@@ -10,9 +10,9 @@ __pycache__/
 # Data
 data/
 
-# Logs and reports
+# Logs 
 logs/
-reports/
+
 
 # System files
 .DS_Store
