@@ -1,0 +1,32 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+df = pd.read_csv("data/raw/bonbanh_raw.csv")
+
+df["gia_ban"] = pd.to_numeric(df["gia_ban"], errors="coerce")
+df = df.dropna(subset=["gia_ban", "hop_so"])
+df = df[(df["gia_ban"] > 0) & (df["hop_so"] != "-")]
+
+thong_ke = (
+    df.groupby("hop_so")["gia_ban"]
+    .median()
+    .div(1_000_000)
+    .sort_values()
+)
+
+plt.figure(figsize=(8, 5))
+plt.bar(thong_ke.index, thong_ke.values, edgecolor="black", alpha=0.85)
+
+plt.title("Giá trung vị theo loại hộp số", fontsize=14)
+plt.xlabel("Loại hộp số")
+plt.ylabel("Giá trung vị (triệu đồng)")
+plt.grid(axis="y", linestyle="--", alpha=0.3)
+plt.tight_layout()
+
+duong_dan = Path("reports/charts/gia_theo_hop_so.png")
+plt.savefig(duong_dan, dpi=300, bbox_inches="tight")
+plt.show()
+
+print(thong_ke.round(2))
+print("Đã lưu biểu đồ tại:", duong_dan)
