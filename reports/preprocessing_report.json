@@ -1,10 +1,15 @@
 {
     "so_dong_ban_dau": 22932,
     "so_phuong_tien_ngoai_pham_vi": 1,
-    "so_dong_trung_lap": 0,
+    "so_ban_ghi_sai_tinh_trang": 0,
+    "so_gia_ban_khong_hop_le": 0,
     "so_gia_tri_gach_ngang": 407,
+    "so_nam_san_xuat_bat_thuong": 0,
     "so_km_bat_thuong": 88,
-    "so_dong_sau_xu_ly": 22931,
+    "so_km_am": 0,
+    "so_dong_truoc_loai_trung": 22931,
+    "so_dong_trung_lap": 203,
+    "so_dong_sau_xu_ly": 22728,
     "so_cot_sau_xu_ly": 21,
     "so_mo_ta_thieu": 0,
     "gia_tri_thieu": {
@@ -25,7 +30,7 @@
         "hang_xe": 0,
         "dong_xe": 6,
         "nhien_lieu": 0,
-        "dung_tich_dong_co": 952,
+        "dung_tich_dong_co": 951,
         "tuoi_xe": 0,
         "so_nam_su_dung": 0,
         "km_trung_binh_nam": 88

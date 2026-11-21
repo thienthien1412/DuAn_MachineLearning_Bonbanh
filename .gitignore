@@ -8,7 +8,18 @@ __pycache__/
 .env
 
 # Data
-data/
+data/*
+!data/
+!data/processed/
+!data/splits/
+
+data/processed/*
+!data/processed/bonbanh_processed.csv
+
+data/splits/*
+!data/splits/train.csv
+!data/splits/validation.csv
+!data/splits/test.csv
 
 # Logs 
 logs/
@@ -20,3 +31,4 @@ Thumbs.db
 
 # IDE
 .vscode/
+src/model/model_training_cu.py
