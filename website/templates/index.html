@@ -657,6 +657,59 @@ body{background:var(--bg);color:var(--text)}
 .hint-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#d8a04d;margin-right:6px}
 @media(max-width:700px){.result-panel{min-height:400px}.waiting-state{min-height:320px}.waiting-steps span{font-size:8px}}
 
+
+/* ===== IMPROVED ASKING-PRICE RANGE INDICATOR ===== */
+.range-section{
+    margin:24px 0 18px;padding:19px 20px 16px;
+    border:1px solid #e0e7ed;border-radius:12px;background:#fff;
+}
+.range-heading{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;margin-bottom:30px;
+}
+.range-heading>strong{font-size:12px;color:#263b50}
+.range-badge{
+    display:inline-flex;align-items:center;padding:6px 10px;border-radius:20px;
+    background:#edf2f6;color:#607286;font-size:10px;font-weight:800;
+}
+.range-badge.inside{background:#e8f5ef;color:#14734f}
+.range-badge.outside{background:#fff2e5;color:#a45d16}
+.range-visual{padding:0 5px}
+.range-track{
+    height:9px;margin:0 0 15px;border-radius:20px;
+    background:linear-gradient(90deg,#d9e4ec 0%,#9db7c9 50%,#d9e4ec 100%);
+    position:relative;
+}
+.range-marker{
+    width:19px;height:19px;background:#e2a34b;border:3px solid #fff;
+    box-shadow:0 0 0 2px #173c5c,0 3px 9px rgba(16,31,50,.2);
+    z-index:2;
+}
+.range-price-label{
+    position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+    white-space:nowrap;padding:6px 9px;border-radius:6px;
+    background:#102b49;color:#fff;font-size:10px;font-weight:800;
+    box-shadow:0 3px 10px rgba(16,31,50,.14);
+}
+.range-price-label:after{
+    content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:#102b49;
+}
+.range-endpoints{display:flex;justify-content:space-between;gap:15px}
+.range-endpoints>span{display:flex;flex-direction:column;gap:5px}
+.range-endpoints>span:last-child{text-align:right;align-items:flex-end}
+.range-endpoints small{font-size:9px;letter-spacing:.7px;color:#8492a0;font-weight:800}
+.range-endpoints strong{font-size:12px;color:#203b55}
+.range-explanation{
+    margin-top:15px;padding:11px 13px;border-radius:8px;
+    background:#f3f6f8;color:#52677a;font-size:11px;line-height:1.65;
+}
+@media(max-width:700px){
+    .range-section{padding:16px 13px}
+    .range-heading{margin-bottom:31px}
+    .range-endpoints strong{font-size:11px}
+}
+
 </style>
 </head>
 
@@ -824,8 +877,23 @@ body{background:var(--bg);color:var(--text)}
                         <strong id="check-percent">--</strong>
                     </div>
                 </div>
-                <div style="font-size:12px;font-weight:700">Vị trí giá rao bán trong khoảng tham khảo</div>
-                <div class="range-track"><span class="range-marker" id="range-marker"></span></div>
+                <div class="range-section">
+                    <div class="range-heading">
+                        <strong>Vị trí giá rao bán trong khoảng tham khảo</strong>
+                        <span id="range-position-badge">Đang xác định</span>
+                    </div>
+                    <div class="range-visual" id="range-visual">
+                        <div class="range-track">
+                            <span class="range-marker" id="range-marker"></span>
+                            <span class="range-price-label" id="range-price-label">Giá rao bán</span>
+                        </div>
+                        <div class="range-endpoints">
+                            <span><small>GIÁ THẤP NHẤT</small><strong id="range-low-label">--</strong></span>
+                            <span><small>GIÁ CAO NHẤT</small><strong id="range-high-label">--</strong></span>
+                        </div>
+                    </div>
+                    <p class="range-explanation" id="range-position-text">Nhập thông tin xe và giá rao bán để xem vị trí.</p>
+                </div>
                 <p class="result-note" id="check-warning"></p>
             </div>
         </section>
@@ -1240,9 +1308,41 @@ $("check-form").addEventListener("submit",async e=>{
 
         $("check-warning").textContent=data.canh_bao || "Kết quả mang tính tham khảo.";
 
-        if(low!=null && high!=null && high>low) {
-            const position=Math.max(0,Math.min(100,(asking-low)/(high-low)*100));
+        const rangeVisual=$("range-visual");
+        if(low!=null && high!=null && Number.isFinite(Number(low)) &&
+           Number.isFinite(Number(high)) && Number(high)>Number(low)) {
+            low=Number(low);
+            high=Number(high);
+            const rawPosition=(asking-low)/(high-low)*100;
+            const position=Math.max(0,Math.min(100,rawPosition));
+
             $("range-marker").style.left=position+"%";
+            $("range-price-label").style.left=Math.max(9,Math.min(91,position))+"%";
+            $("range-price-label").textContent="Giá rao: "+formatCompact(asking);
+            $("range-low-label").textContent=formatCompact(low);
+            $("range-high-label").textContent=formatCompact(high);
+            $("range-position-badge").textContent=rawPosition<0
+                ? "Thấp hơn khoảng"
+                : rawPosition>100 ? "Cao hơn khoảng" : "Trong khoảng";
+            $("range-position-badge").className=rawPosition<0 || rawPosition>100
+                ? "range-badge outside" : "range-badge inside";
+
+            let explanation;
+            if(asking<low) {
+                explanation="Giá rao bán thấp hơn mức tham khảo thấp nhất "+formatMoney(low-asking)+".";
+            } else if(asking>high) {
+                explanation="Giá rao bán cao hơn mức tham khảo cao nhất "+formatMoney(asking-high)+".";
+            } else {
+                explanation="Giá rao bán nằm ở khoảng "+rawPosition.toFixed(1).replace(".",",")+
+                    "% tính từ mức thấp nhất đến mức cao nhất.";
+            }
+            $("range-position-text").textContent=explanation;
+            rangeVisual.classList.remove("hidden");
+        } else {
+            rangeVisual.classList.add("hidden");
+            $("range-position-badge").textContent="Chưa có dữ liệu";
+            $("range-position-badge").className="range-badge";
+            $("range-position-text").textContent="Chưa đủ dữ liệu để xác định vị trí giá rao bán.";
         }
     } catch(error) {
         $("check-status").textContent=error.message;
