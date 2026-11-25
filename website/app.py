@@ -280,42 +280,45 @@ def lua_chon_thong_ke():
 
 @app.route("/api/statistics", methods=["GET"])
 def thong_ke_thi_truong():
-    loai = request.args.get("type", "all")
-    gia_tri = request.args.get("value")
+    hang = request.args.get("make", "").strip()
+    tuoi_tu = request.args.get("age_min", "").strip()
+    tuoi_den = request.args.get("age_max", "").strip()
+    gia_tu = request.args.get("price_min", "").strip()
+    gia_den = request.args.get("price_max", "").strip()
 
     du_lieu_loc = DU_LIEU_XE.copy()
 
-    if loai == "make":
-        if not gia_tri:
-            return jsonify({
-                "loi": "Chưa chọn hãng xe"
-            }), 400
-
+    if hang:
         du_lieu_loc = du_lieu_loc[
-            du_lieu_loc["hang_xe"].astype(str) == gia_tri
+            du_lieu_loc["hang_xe"].astype(str).str.contains(
+                hang, case=False, na=False, regex=False
+            )
         ]
 
-    elif loai == "age":
-        if not gia_tri:
-            return jsonify({
-                "loi": "Chưa chọn tuổi xe"
-            }), 400
+    try:
+        if tuoi_tu:
+            du_lieu_loc = du_lieu_loc[
+                du_lieu_loc["tuoi_xe"] >= int(tuoi_tu)
+            ]
+        if tuoi_den:
+            du_lieu_loc = du_lieu_loc[
+                du_lieu_loc["tuoi_xe"] <= int(tuoi_den)
+            ]
+        if gia_tu:
+            du_lieu_loc = du_lieu_loc[
+                du_lieu_loc["gia_ban"] >= float(gia_tu)
+            ]
+        if gia_den:
+            du_lieu_loc = du_lieu_loc[
+                du_lieu_loc["gia_ban"] <= float(gia_den)
+            ]
+    except ValueError:
+        return jsonify({"loi": "Giá trị bộ lọc không hợp lệ"}), 400
 
-        try:
-            tuoi = int(gia_tri)
-        except ValueError:
-            return jsonify({
-                "loi": "Tuổi xe không hợp lệ"
-            }), 400
-
-        du_lieu_loc = du_lieu_loc[
-            du_lieu_loc["tuoi_xe"] == tuoi
-        ]
-
-    elif loai != "all":
-        return jsonify({
-            "loi": "Loại thống kê không hợp lệ"
-        }), 400
+    if tuoi_tu and tuoi_den and int(tuoi_tu) > int(tuoi_den):
+        return jsonify({"loi": "Khoảng tuổi xe không hợp lệ"}), 400
+    if gia_tu and gia_den and float(gia_tu) > float(gia_den):
+        return jsonify({"loi": "Khoảng giá không hợp lệ"}), 400
 
     if du_lieu_loc.empty:
         return jsonify({
