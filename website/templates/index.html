@@ -1132,15 +1132,95 @@ body:after{
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 /* ===== END LIGHT PREMIUM BACKGROUND ===== */
 
+
+/* ===== STRONGER LIGHT PREMIUM IDENTITY + PRECISION AUTOMOTIVE LOGO ===== */
+:root{
+ --brand-ink:#12364d;
+ --brand-teal:#087f9b;
+ --brand-cyan:#22b9c7;
+}
+body{
+ background:
+  radial-gradient(ellipse 900px 620px at 0% 0%,rgba(87,202,211,.34),transparent 68%),
+  radial-gradient(ellipse 820px 600px at 100% 10%,rgba(108,177,224,.31),transparent 66%),
+  radial-gradient(ellipse 900px 650px at 50% 92%,rgba(132,207,218,.25),transparent 68%),
+  linear-gradient(125deg,#eaf5f8 0%,#f8fcfd 43%,#eaf4f8 100%);
+ background-attachment:fixed;
+}
+body:before{
+ opacity:.58;
+ background-image:
+  linear-gradient(rgba(54,127,151,.10) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(54,127,151,.10) 1px,transparent 1px),
+  linear-gradient(135deg,transparent 0 48%,rgba(72,161,181,.055) 48.15% 48.35%,transparent 48.5%);
+ background-size:38px 38px,38px 38px,190px 190px;
+ mask-image:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.18) 70%,transparent);
+}
+body:after{
+ width:620px;height:620px;right:-340px;top:27%;
+ border:1px solid rgba(32,150,174,.20);
+ box-shadow:0 0 0 42px rgba(32,150,174,.065),0 0 0 94px rgba(32,150,174,.045),0 0 0 154px rgba(32,150,174,.028);
+}
+.brand{
+ display:inline-flex;align-items:center;gap:13px;
+ color:var(--brand-ink)!important;
+ font-size:0!important;font-weight:800;
+ letter-spacing:0!important;
+}
+.brand-icon{
+ width:52px;height:52px;flex:0 0 52px;
+ border-radius:15px;
+ background:linear-gradient(145deg,#075c78 0%,#078fa7 48%,#35c6cd 100%);
+ box-shadow:0 9px 22px rgba(7,112,139,.28),inset 0 1px 0 rgba(255,255,255,.35);
+}
+.brand-icon:after{border:1px solid rgba(255,255,255,.34);border-radius:14px}
+.brand-car{width:42px;height:42px;filter:drop-shadow(0 2px 2px rgba(0,45,65,.16))}
+.brand-word{
+ display:inline-flex;align-items:baseline;
+ font-family:"Be Vietnam Pro",sans-serif;
+ font-size:25px;line-height:1;
+ font-weight:800;letter-spacing:-1.15px;
+ white-space:nowrap;
+}
+.brand-word span:first-child{color:#17394f}
+.brand-word span:last-child{color:#078ba3}
+.navbar{min-height:86px}
+.hero,.page-heading{
+ box-shadow:0 22px 54px rgba(29,91,113,.16),0 3px 10px rgba(29,91,113,.05);
+}
+.hero{border-color:rgba(158,213,222,.95)}
+.page-heading{border-color:rgba(158,213,222,.95)}
+.card,.result-panel,.shortcut,.kpi{
+ box-shadow:0 16px 38px rgba(35,84,105,.085),0 3px 9px rgba(35,84,105,.035);
+}
+@media(max-width:700px){
+ body{background-attachment:scroll}
+ .brand{gap:9px}
+ .brand-icon{width:44px;height:44px;flex-basis:44px;border-radius:13px}
+ .brand-car{width:36px;height:36px}
+ .brand-word{font-size:21px;letter-spacing:-.9px}
+}
+@media(max-width:420px){.brand-word{font-size:19px}}
+/* ===== END IDENTITY REFRESH ===== */
+
 </style>
 </head>
 
 <body>
 
 <header class="navbar">
-    <a href="/" class="brand" style="text-decoration:none">
-        <span class="brand-icon" aria-hidden="true"><svg class="brand-car" viewBox="0 0 64 64"><path d="M7 39 13 25q2-5 8-6l11-2 8-10h8q5 0 8 5l5 8 5 3q3 2 3 6v10h-8a7 7 0 0 0-14 0H27a7 7 0 0 0-14 0H7z" fill="currentColor"/><path d="m25 18 7-8h7v8zm17-8h5q3 0 5 3l3 5H42z" fill="#c9f4f1"/><circle cx="19" cy="43" r="5" fill="#0d6379" stroke="#fff" stroke-width="2"/><circle cx="50" cy="43" r="5" fill="#0d6379" stroke="#fff" stroke-width="2"/><path d="M7 12h9M48 3h9M54 9l5-6" stroke="#f0b65d" stroke-width="2" stroke-linecap="round"/></svg></span>
-        Dudoangiaxecu
+    <a href="/" class="brand" style="text-decoration:none" aria-label="Dudoangiaxecu - Trang chủ">
+        <span class="brand-icon" aria-hidden="true">
+            <svg class="brand-car" viewBox="0 0 64 64" fill="none">
+                <path d="M11 43a22 22 0 1 1 42 0" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
+                <path d="M17 29l4 2M25 19l2.5 4M39 19l-2.5 4M47 29l-4 2" stroke="#d8fbff" stroke-width="2.6" stroke-linecap="round"/>
+                <path d="M32 38 44 23" stroke="#fff" stroke-width="3.8" stroke-linecap="round"/>
+                <circle cx="32" cy="39" r="4.8" fill="#fff"/>
+                <path d="M18 49h28" stroke="#b9f4f4" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M23 55h18" stroke="#b9f4f4" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            </svg>
+        </span>
+        <span class="brand-word"><span>Dudoan</span><span>giaxecu</span></span>
     </a>
     <nav class="nav-links">
         <a href="/" id="nav-home">Dự đoán giá</a>
