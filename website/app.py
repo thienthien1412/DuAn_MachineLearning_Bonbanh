@@ -289,7 +289,7 @@ def thong_ke_thi_truong():
     if loai != "all" and not gia_tri:
         return jsonify({"loi": "Vui lòng chọn giá trị thống kê"}), 400
 
-    # KPI và biểu đồ luôn được tính trên toàn bộ dữ liệu.
+    # KPI và biểu đồ luôn sử dụng toàn bộ dữ liệu thị trường.
     tong_quan = tinh_chi_so(DU_LIEU_XE)
 
     top_hang = (
@@ -306,17 +306,13 @@ def thong_ke_thi_truong():
             "so_xe": int(so_luong)
         })
 
-    # Hai bảng được tạo riêng để bộ lọc không ảnh hưởng KPI và biểu đồ.
-    bang_hang = tao_bang_theo_nhom(DU_LIEU_XE, "hang_xe")
-    bang_hang.sort(key=lambda x: x["so_xe"], reverse=True)
-
-    bang_tuoi = tao_bang_theo_nhom(DU_LIEU_XE, "tuoi_xe")
-    bang_tuoi.sort(key=lambda x: x["gia_tri"])
+    # Bộ lọc chỉ tác động đến dữ liệu của hai bảng thống kê.
+    du_lieu_bang = DU_LIEU_XE.copy()
 
     if loai == "make":
-        bang_hang = [
-            dong for dong in bang_hang
-            if dong["gia_tri"].casefold() == gia_tri.casefold()
+        du_lieu_bang = du_lieu_bang[
+            du_lieu_bang["hang_xe"].astype(str).str.casefold()
+            == gia_tri.casefold()
         ]
 
     elif loai == "age":
@@ -325,10 +321,15 @@ def thong_ke_thi_truong():
         except ValueError:
             return jsonify({"loi": "Tuổi xe không hợp lệ"}), 400
 
-        bang_tuoi = [
-            dong for dong in bang_tuoi
-            if dong["gia_tri"] == tuoi
+        du_lieu_bang = du_lieu_bang[
+            du_lieu_bang["tuoi_xe"] == tuoi
         ]
+
+    bang_hang = tao_bang_theo_nhom(du_lieu_bang, "hang_xe")
+    bang_hang.sort(key=lambda x: x["so_xe"], reverse=True)
+
+    bang_tuoi = tao_bang_theo_nhom(du_lieu_bang, "tuoi_xe")
+    bang_tuoi.sort(key=lambda x: x["gia_tri"])
 
     return jsonify({
         "tong_quan": tong_quan,
