@@ -959,6 +959,69 @@ th{background:#eaf8fa;color:#356477;position:relative}td{color:#315a6a}tbody tr:
  .page-heading:after,#page-stats .page-heading:after{background-position:60% center!important}
 }
 
+
+/* ===== DUDOANGIAXECU: COHESIVE PRODUCT UI ===== */
+:root{--brand-ink:#142d43;--brand-teal:#0796a8;--brand-cyan:#28bdc7;--brand-soft:#eaf7f8;--brand-line:#dce9ed;--brand-muted:#718593}
+body{background:radial-gradient(ellipse at 8% 0%,rgba(38,183,194,.10),transparent 28%),radial-gradient(ellipse at 96% 12%,rgba(56,133,190,.07),transparent 25%),#f5f8fa}
+.navbar{min-height:82px;background:rgba(255,255,255,.95);border-bottom:1px solid rgba(205,222,229,.85);box-shadow:0 8px 28px rgba(20,54,75,.07);backdrop-filter:blur(14px)}
+.brand{gap:12px;color:var(--brand-ink)!important;font-size:25px;font-weight:800;letter-spacing:-1.1px}
+.brand-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#087e91,#20b8c1);color:#fff;box-shadow:0 8px 18px rgba(8,142,161,.23);position:relative;overflow:hidden}
+.brand-icon:after{content:"";position:absolute;inset:1px;border:1px solid rgba(255,255,255,.24);border-radius:13px;pointer-events:none}
+.brand-car{width:40px;height:40px;position:relative;z-index:1}
+.nav-links a{font-weight:650;transition:background .2s,color .2s,transform .2s}.nav-links a:hover{transform:translateY(-1px)}
+.hero{border-radius:18px;min-height:370px;box-shadow:0 22px 48px rgba(15,48,69,.14)}
+.hero:after{display:block;content:"";position:absolute;right:-85px;top:-190px;width:430px;height:430px;border:1px solid rgba(255,255,255,.2);border-radius:50%;box-shadow:0 0 0 35px rgba(255,255,255,.045),0 0 0 75px rgba(255,255,255,.035)}
+.page-heading{border-radius:16px;box-shadow:0 16px 38px rgba(18,65,84,.10)}
+.card,.result-panel,.shortcut,.kpi{border-radius:14px}.card{box-shadow:0 12px 32px rgba(24,67,86,.055)}
+.field-section{border-radius:13px;padding:21px;background:rgba(255,255,255,.72);border-color:#e1eaee}
+.field-section-basic,.field-section-extra{background:rgba(248,252,253,.92);border-color:#e0eaee}
+.section-label{font-size:10px;letter-spacing:1.25px;font-weight:800}
+.field{min-width:0}.field label{font-size:12px;color:#365367;letter-spacing:.05px}
+.field input,.field select,#asking-price{width:100%;height:48px;border:1px solid #d6e3e8;border-radius:10px;background:#fff;color:#203e50;padding:0 14px;box-shadow:0 2px 5px rgba(20,60,78,.025);transition:border-color .18s,box-shadow .18s,background .18s}
+.field input:hover,.field select:hover,#asking-price:hover{border-color:#a9cbd2}
+.field input:focus,.field select:focus,#asking-price:focus{outline:none;border-color:#0b9eaf;box-shadow:0 0 0 4px rgba(11,158,175,.11);background:#fff}
+.field input::placeholder,#asking-price::placeholder{color:#9aabb4}
+.field select{appearance:none;padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b8793' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.field-hint{display:block;margin-top:7px;color:#80939e;font-size:10px;line-height:1.55}
+.number-control{display:flex;align-items:stretch;gap:7px;width:100%;min-width:0}.number-control>input{flex:1;min-width:0;width:0}
+.number-actions{display:flex;flex-direction:column;gap:4px;flex:0 0 37px}
+.number-step{flex:1;min-height:20px;border:1px solid #d7e7eb;border-radius:7px;background:#f3fafb;color:#087e91;font-size:15px;font-weight:700;line-height:1;transition:background .16s,border-color .16s,transform .16s}
+.number-step:hover{background:#e2f5f7;border-color:#8ccbd2}.number-step:active{transform:scale(.94)}
+.number-control input[type=number]{appearance:textfield;-moz-appearance:textfield}
+.number-control input[type=number]::-webkit-inner-spin-button,.number-control input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+#asking-price{height:48px}
+.form-footer{border-color:#e7eef1}.button{border-radius:9px;font-weight:750;letter-spacing:.05px}
+.button:focus-visible,.nav-links a:focus-visible,.number-step:focus-visible{outline:3px solid rgba(9,158,177,.25);outline-offset:2px}
+.result-panel{position:relative;overflow:hidden;background:linear-gradient(155deg,#fff 0%,#f7fbfc 100%)}
+.result-panel:after{content:"";position:absolute;right:-100px;bottom:-140px;width:260px;height:260px;border:1px solid rgba(10,151,169,.09);border-radius:50%;box-shadow:0 0 0 28px rgba(10,151,169,.025),0 0 0 58px rgba(10,151,169,.02);pointer-events:none}
+.waiting-state{position:relative;z-index:1}.waiting-visual{animation:visualFloat 4s ease-in-out infinite}
+.waiting-state>strong{font-size:17px;letter-spacing:-.25px}.waiting-state>p{font-size:11px;line-height:1.85}
+.waiting-steps>div,.waiting-hint{border-radius:10px;background:rgba(255,255,255,.86)}
+.request-loading{position:relative;z-index:2;flex:1;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;animation:loadingEnter .35s ease both}
+.request-loading.hidden{display:none!important}
+.loading-emblem{width:104px;height:104px;display:grid;place-items:center;position:relative;border-radius:30px;background:linear-gradient(145deg,#e5f8f9,#f4fbfc);color:#078da1;margin-bottom:24px}
+.loading-emblem svg{width:66px;height:66px;position:relative;z-index:1;filter:drop-shadow(0 5px 5px rgba(8,108,128,.14))}
+.scan-ring{position:absolute;inset:-9px;border:1px solid rgba(8,151,169,.24);border-radius:36px;animation:scanPulse 2s ease-out infinite}
+.scan-ring:after{content:"";position:absolute;left:50%;top:-3px;width:6px;height:6px;border-radius:50%;background:#12a9b8;box-shadow:0 0 13px #12a9b8}
+.request-loading>strong{font-size:17px;color:#183e52;letter-spacing:-.25px}.request-loading>p{max-width:350px;margin-top:9px;color:#718894;font-size:11px;line-height:1.8}
+.loading-track{width:min(230px,80%);height:4px;margin-top:24px;border-radius:10px;background:#e4eff1;overflow:hidden}
+.loading-track span{display:block;width:38%;height:100%;border-radius:10px;background:linear-gradient(90deg,#078da1,#39c4c8);animation:loadingSweep 1.5s ease-in-out infinite}
+.request-loading>small{margin-top:11px;color:#91a2aa;font-size:9px}
+#stats-empty{min-height:330px;border-radius:16px;background:linear-gradient(145deg,#fff,#f3fafb)}
+.stats-loading-mark{width:62px;height:52px;display:flex;align-items:flex-end;justify-content:center;gap:6px;margin-bottom:17px}
+.stats-loading-mark span{width:9px;border-radius:8px;background:linear-gradient(180deg,#24b9c1,#087f9b);animation:statsBars 1s ease-in-out infinite alternate}
+.stats-loading-mark span:nth-child(1){height:19px;animation-delay:0s}.stats-loading-mark span:nth-child(2){height:34px;animation-delay:.18s}.stats-loading-mark span:nth-child(3){height:26px;animation-delay:.36s}
+#stats-status.is-loading{display:flex;align-items:center;gap:9px}#stats-status.is-loading:before{content:"";width:13px;height:13px;border:2px solid #cce8ec;border-top-color:#078fa4;border-radius:50%;animation:spin .75s linear infinite}
+.footer{margin-top:10px}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes loadingSweep{0%{transform:translateX(-110%)}100%{transform:translateX(290%)}}
+@keyframes scanPulse{0%{transform:scale(.92);opacity:.2}55%{opacity:.8}100%{transform:scale(1.12);opacity:0}}
+@keyframes visualFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes loadingEnter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes statsBars{from{transform:scaleY(.55);opacity:.55}to{transform:scaleY(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:700px){.navbar{min-height:72px;backdrop-filter:none}.brand{font-size:21px;gap:9px}.brand-icon{width:42px;height:42px;border-radius:12px}.brand-car{width:35px;height:35px}.hero{min-height:300px}.field-section{padding:16px}.field input,.field select,#asking-price{height:46px}.number-actions{flex-basis:35px}.request-loading{min-height:300px;padding:24px 14px}}
+@media(max-width:420px){.brand{font-size:19px}.brand-icon{width:39px;height:39px}}
+
 </style>
 </head>
 
@@ -966,7 +1029,7 @@ th{background:#eaf8fa;color:#356477;position:relative}td{color:#315a6a}tbody tr:
 
 <header class="navbar">
     <a href="/" class="brand" style="text-decoration:none">
-        <span class="brand-icon" aria-hidden="true"><svg class="brand-car" viewBox="0 0 240 100"><path d="M18 67 27 48q4-9 15-11l25-4 22-23q5-5 14-5h48q15 0 25 12l18 20 21 7q10 3 10 14v15h-20a22 22 0 0 0-43 0H80a22 22 0 0 0-43 0H18z" fill="currentColor"/><path d="m77 32 19-20q3-3 9-3h20v23zm57-23h17q10 0 17 9l13 14h-47z" fill="#bfe8eb"/><path d="M21 57h194M104 37v27m42-27v27" fill="none" stroke="#d8f2f3" stroke-width="2"/><circle cx="58" cy="70" r="15" fill="#123b52" stroke="#e8f5f6" stroke-width="5"/><circle cx="179" cy="70" r="15" fill="#123b52" stroke="#e8f5f6" stroke-width="5"/><circle cx="58" cy="70" r="5" fill="#8bcbd0"/><circle cx="179" cy="70" r="5" fill="#8bcbd0"/></svg></span>
+        <span class="brand-icon" aria-hidden="true"><svg class="brand-car" viewBox="0 0 64 64"><path d="M7 39 13 25q2-5 8-6l11-2 8-10h8q5 0 8 5l5 8 5 3q3 2 3 6v10h-8a7 7 0 0 0-14 0H27a7 7 0 0 0-14 0H7z" fill="currentColor"/><path d="m25 18 7-8h7v8zm17-8h5q3 0 5 3l3 5H42z" fill="#c9f4f1"/><circle cx="19" cy="43" r="5" fill="#0d6379" stroke="#fff" stroke-width="2"/><circle cx="50" cy="43" r="5" fill="#0d6379" stroke="#fff" stroke-width="2"/><path d="M7 12h9M48 3h9M54 9l5-6" stroke="#f0b65d" stroke-width="2" stroke-linecap="round"/></svg></span>
         Dudoangiaxecu
     </a>
     <nav class="nav-links">
@@ -1021,6 +1084,7 @@ th{background:#eaf8fa;color:#356477;position:relative}td{color:#315a6a}tbody tr:
                     <div><b>03</b><span>Nhận kết quả</span></div>
                 </div>
             </div>
+            <div id="prediction-loading" class="request-loading hidden" role="status" aria-live="polite"><div class="loading-emblem"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M5 42 12 27q2-5 8-6l11-2 9-11h8q5 0 8 5l5 9 5 3q3 2 3 6v11h-8a7 7 0 0 0-14 0H27a7 7 0 0 0-14 0H5z" fill="currentColor"/><circle cx="19" cy="47" r="5" fill="#fff" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="47" r="5" fill="#fff" stroke="currentColor" stroke-width="3"/></svg><span class="scan-ring"></span></div><strong>Đang phân tích thông tin xe</strong><p>Hệ thống đang đối chiếu các đặc điểm xe với dữ liệu thị trường để ước tính mức giá tham khảo.</p><div class="loading-track"><span></span></div><small>Vui lòng chờ trong giây lát</small></div>
             <div id="prediction-result" class="hidden">
                 <div class="result-price">
                     <span>Giá dự đoán</span>
@@ -1094,6 +1158,7 @@ th{background:#eaf8fa;color:#356477;position:relative}td{color:#315a6a}tbody tr:
             <div id="check-empty" class="result-empty waiting-state waiting-check">
                 <div class="waiting-visual comparison-visual" aria-hidden="true"><svg viewBox="0 0 240 130"><path class="chart-axis" d="M25 12v96h190"/><path class="chart-gridline" d="M25 40h190M25 72h190"/><rect class="chart-bar" x="48" y="70" width="28" height="38" rx="5"/><rect class="chart-bar bar-two" x="96" y="48" width="28" height="60" rx="5"/><rect class="chart-bar bar-three" x="144" y="28" width="28" height="80" rx="5"/><path class="chart-trend" d="m43 63 55-23 49-15 48-12"/><circle class="chart-point" cx="195" cy="13" r="5"/></svg></div><span class="waiting-kicker">ĐỐI CHIẾU GIÁ THỊ TRƯỜNG</span><strong>Sẵn sàng kiểm tra giá rao bán</strong><p>Nhập thông tin xe và mức giá người bán đưa ra để xem mức giá đó thấp hơn, nằm trong hay cao hơn khoảng tham khảo.</p><div class="waiting-hint"><span class="hint-dot"></span> Kết quả chỉ xuất hiện sau khi gửi thông tin xe</div>
             </div>
+            <div id="check-loading" class="request-loading hidden" role="status" aria-live="polite"><div class="loading-emblem"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M5 42 12 27q2-5 8-6l11-2 9-11h8q5 0 8 5l5 9 5 3q3 2 3 6v11h-8a7 7 0 0 0-14 0H27a7 7 0 0 0-14 0H5z" fill="currentColor"/><circle cx="19" cy="47" r="5" fill="#fff" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="47" r="5" fill="#fff" stroke="currentColor" stroke-width="3"/></svg><span class="scan-ring"></span></div><strong>Đang đối chiếu mức giá</strong><p>Hệ thống đang xử lý thông tin xe và so sánh giá rao bán với khoảng giá tham khảo.</p><div class="loading-track"><span></span></div><small>Vui lòng chờ trong giây lát</small></div>
             <div id="check-result" class="hidden">
                 <div id="assessment" class="assessment">Kết quả đánh giá</div>
                 <div class="result-metrics">
@@ -1347,6 +1412,23 @@ function getOptions(key) {
     return data[key] || [];
 }
 
+function themNutDieuChinh(input,buoc,laTien=false) {
+    if(!input || input.dataset.stepper==="true") return;
+    input.dataset.stepper="true";
+    const wrap=document.createElement("div");wrap.className="number-control";
+    input.parentNode.insertBefore(wrap,input);wrap.appendChild(input);
+    const actions=document.createElement("div");actions.className="number-actions";
+    [["Tăng giá trị","+"],["Giảm giá trị","−"]].forEach((item,index)=>{
+        const button=document.createElement("button");button.type="button";button.className="number-step";button.textContent=item[1];button.setAttribute("aria-label",item[0]+" "+(input.name||input.id));
+        button.addEventListener("click",()=>{
+            const current=laTien?parseMoneyInput(input.value):(input.value===""?0:Number(input.value));
+            const next=Math.max(0,(Number.isFinite(current)?current:0)+(index===0?buoc:-buoc));
+            input.value=laTien?formatMoneyInput(next):String(Number(next.toFixed(3)));
+            input.dispatchEvent(new Event("input",{bubbles:true}));input.dispatchEvent(new Event("change",{bubbles:true}));
+        });actions.appendChild(button);
+    });wrap.appendChild(actions);
+}
+
 function makeField(key,prefix,required) {
     const wrap = document.createElement("div");
     wrap.className = "field";
@@ -1383,17 +1465,13 @@ function makeField(key,prefix,required) {
     if(required) input.required = true;
     if(!required && input.tagName === "SELECT") input.value = "";
     if(input.type==="number"){
-        input.min="0";
-        input.inputMode=key==="dung_tich_dong_co"?"decimal":"numeric";
-        input.addEventListener("input",()=>{
-            if(input.value!=="" && Number(input.value)<0) input.value="0";
-        });
-        input.addEventListener("change",()=>{
-            if(input.value!=="" && Number(input.value)<0) input.value="0";
-        });
+        input.min="0";input.inputMode=key==="dung_tich_dong_co"?"decimal":"numeric";
+        input.addEventListener("input",()=>{if(input.value!=="" && Number(input.value)<0) input.value="0"});
+        input.addEventListener("change",()=>{if(input.value!=="" && Number(input.value)<0) input.value="0"});
     }
 
     wrap.appendChild(input);
+    if(input.type==="number") themNutDieuChinh(input,key==="so_km_da_di"?1000:key==="dung_tich_dong_co"?0.1:1);
     const hints={
         khu_vuc:"Chọn khu vực nơi xe đang được rao bán.",
         so_km_da_di:"Nhập số kilomet hiển thị trên đồng hồ xe.",
@@ -1475,8 +1553,8 @@ $("prediction-form").addEventListener("submit",async e=>{
     if(!validate("p_")) return;
 
     const button=$("predict-button");
-    button.disabled=true;
-    button.textContent="Đang dự đoán...";
+    button.disabled=true;button.textContent="Đang dự đoán...";
+    $("prediction-empty").classList.add("hidden");$("prediction-result").classList.add("hidden");$("prediction-loading").classList.remove("hidden");
     $("prediction-status").textContent="Hệ thống đang xử lý thông tin.";
 
     try {
@@ -1509,14 +1587,14 @@ $("prediction-form").addEventListener("submit",async e=>{
         $("prediction-status").textContent="Dự đoán giá xe thành công.";
         $("prediction-status").className="status";
     } catch(error) {
-        $("prediction-status").textContent=error.message;
-        $("prediction-status").className="status error";
+        $("prediction-empty").classList.remove("hidden");$("prediction-status").textContent=error.message;$("prediction-status").className="status error";
     } finally {
-        button.disabled=false;
+        $("prediction-loading").classList.add("hidden");button.disabled=false;
         button.textContent="Dự đoán giá xe →";
     }
 });
 
+themNutDieuChinh($("asking-price"),1000000,true);
 $("asking-price").addEventListener("input",e=>{e.target.value=formatMoneyInput(e.target.value)});
 $("check-form").addEventListener("submit",async e=>{
     e.preventDefault();
@@ -1526,8 +1604,8 @@ $("check-form").addEventListener("submit",async e=>{
     if(!Number.isFinite(asking)||asking<=0){$("check-status").textContent="Vui lòng nhập giá rao bán lớn hơn 0.";$("check-status").className="status error";$("asking-price").focus();return}
 
     const button=$("check-button");
-    button.disabled=true;
-    button.textContent="Đang kiểm tra...";
+    button.disabled=true;button.textContent="Đang kiểm tra...";
+    $("check-empty").classList.add("hidden");$("check-result").classList.add("hidden");$("check-loading").classList.remove("hidden");
 
     try {
         const data=await api("/api/check-price",{
@@ -1608,10 +1686,9 @@ $("check-form").addEventListener("submit",async e=>{
             $("range-position-text").textContent="Chưa đủ dữ liệu để xác định vị trí giá rao bán.";
         }
     } catch(error) {
-        $("check-status").textContent=error.message;
-        $("check-status").className="status error";
+        $("check-empty").classList.remove("hidden");$("check-status").textContent=error.message;$("check-status").className="status error";
     } finally {
-        button.disabled=false;
+        $("check-loading").classList.add("hidden");button.disabled=false;
         button.textContent="Kiểm tra giá →";
     }
 });
