@@ -731,6 +731,61 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
 @media(max-width:420px){.nav-links a{font-size:9px;padding:8px 7px}.form-grid{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-value{font-size:18px}}
 
 
+/* ===== AUTOMOTIVE TECH: COLOR & FINISH ===== */
+:root{
+    --navy:#073b4c;
+    --blue:#087eaa;
+    --blue2:#06b6d4;
+    --accent:#f59e0b;
+    --pale:#e8f7fb;
+    --bg:#f3f8fc;
+    --text:#183746;
+    --muted:#66818a;
+    --border:#d8e8ef;
+    --green:#15966a;
+    --red:#dc5364;
+    --shadow:0 14px 34px rgba(7,59,76,.09);
+}
+.navbar{background:linear-gradient(105deg,#073b4c 0%,#075a78 58%,#087eaa 100%);box-shadow:0 7px 25px rgba(7,59,76,.2)}
+.brand-icon{background:linear-gradient(145deg,#e8fbff,#bceef5);color:#087eaa;box-shadow:0 4px 13px rgba(6,182,212,.2)}
+.nav-links a.active,.nav-links a:hover{background:rgba(6,182,212,.2);color:#a9f2fb}
+.hero,.page-heading{background-color:#073b4c}
+.hero{box-shadow:0 16px 36px rgba(7,59,76,.16)}
+.hero:before{background:linear-gradient(180deg,#f59e0b,#06b6d4)}
+.button{background:linear-gradient(110deg,#087eaa,#06b6d4);box-shadow:0 6px 15px rgba(8,126,170,.2);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.button:hover{background:linear-gradient(110deg,#076b91,#089bb5);box-shadow:0 9px 20px rgba(8,126,170,.27);transform:translateY(-1px)}
+.button.secondary{background:linear-gradient(110deg,#e8f7fb,#d8f1f5);color:#07536b;box-shadow:none}
+.card,.result-panel,.shortcut,.kpi{border-color:#d9e8ef;box-shadow:0 10px 28px rgba(7,59,76,.065)}
+.card-title .symbol,.shortcut-icon{background:linear-gradient(145deg,#e7f8fb,#d9edff);color:#087eaa}
+.result-price{background:linear-gradient(120deg,#073b4c 0%,#087eaa 58%,#06b6d4 100%)}
+.result-panel{background:linear-gradient(145deg,#fff 0%,#effaff 100%)}
+.kpi-grid{gap:15px}
+.kpi{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff 0%,#f7fbff 100%);border:1px solid #e0edf3;border-top:0;padding-top:21px}
+.kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#06b6d4,#2563eb)}
+.kpi:nth-child(2):before{background:linear-gradient(90deg,#2563eb,#7c3aed)}
+.kpi:nth-child(3):before{background:linear-gradient(90deg,#10b981,#06b6d4)}
+.kpi:nth-child(4):before{background:linear-gradient(90deg,#f59e0b,#f97316)}
+.kpi:nth-child(5):before{background:linear-gradient(90deg,#ec4899,#8b5cf6)}
+.kpi-icon{width:38px;height:38px;border-radius:11px;background:#e5f7fb;color:#0785a7}
+.kpi:nth-child(2) .kpi-icon{background:#eeeaff;color:#6554c0}
+.kpi:nth-child(3) .kpi-icon{background:#e6f8f0;color:#15966a}
+.kpi:nth-child(4) .kpi-icon{background:#fff4df;color:#c47a08}
+.kpi:nth-child(5) .kpi-icon{background:#fceafa;color:#bb4898}
+.kpi-value{font-size:23px;color:#073b4c}
+.chart-card{position:relative;overflow:hidden;border:1px solid #dfebf2;background:linear-gradient(145deg,#fff,#fbfdff)}
+.chart-card:before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#06b6d4,#2563eb,#8b5cf6)}
+.chart-card:nth-child(2):before{background:linear-gradient(90deg,#10b981,#06b6d4)}
+.chart-card:nth-child(3):before{background:linear-gradient(90deg,#f59e0b,#f97316)}
+.chart-card:nth-child(4):before{background:linear-gradient(90deg,#ec4899,#8b5cf6)}
+.stats-source{margin:22px 0 0;padding:13px 16px;border:1px solid #cfe8f0;border-left:4px solid #06b6d4;border-radius:10px;background:linear-gradient(100deg,#eaf8fc,#f4f7ff);color:#496b7a;font-size:11px;line-height:1.7}
+th{background:linear-gradient(100deg,#e8f7fb,#edf2ff);color:#164d67}
+tbody tr:hover{background:#f0f9fd}
+.footer{background:linear-gradient(105deg,#073b4c,#075a78);color:#d2eaf0}
+.range-marker{background:#06b6d4;box-shadow:0 0 0 2px #073b4c,0 3px 10px rgba(7,59,76,.2)}
+.range-price-label{background:#073b4c}
+.range-price-label:after{border-top-color:#073b4c}
+@media(max-width:700px){.kpi{padding:16px 13px}.kpi-icon{width:34px;height:34px}.kpi-value{font-size:20px}}
+
 /* ===== FIX CANH HANG XE / DONG XE VA CHAN GIA TRI AM ===== */
 .field-control-stack{
     display:grid;
@@ -962,7 +1017,7 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
         <div class="status" id="stats-status"></div>
     </section>
 
-    <div id="stats-content" class="hidden"><p class="stats-source">Nguồn dữ liệu: Bonbanh.com · Phạm vi: các tin đăng đã thu thập trong đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p><p class="stats-source">Nguồn dữ liệu: Bonbanh.com · Phạm vi: các tin đăng đã thu thập trong đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p>
+    <div id="stats-content" class="hidden">
         <div class="kpi-grid">
             <div class="kpi">
                 <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M3 14 5 8.5A2 2 0 0 1 7 7h10a2 2 0 0 1 2 1.5L21 14v4h-2v-2H5v2H3z"/></svg></div>
@@ -1035,6 +1090,7 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
                 </table>
             </div>
         </section>
+        <p class="stats-source">Nguồn dữ liệu: Bonbanh.com – Các tin đăng được thu thập trong phạm vi đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p>
     </div>
 
     <div id="stats-empty" class="card result-empty" style="margin-top:22px">
