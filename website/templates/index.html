@@ -1944,9 +1944,9 @@ function renderStats(data){
 }
 async function loadStatistics(){
  const params=new URLSearchParams();DASHBOARD_FILTERS.forEach(k=>(ACTIVE_FILTERS[k]||[]).forEach(v=>params.append(k,v)));
- $("stats-status").textContent="Đang cập nhật dashboard...";
- try{const data=await api("/api/statistics?"+params.toString());renderStats(data);$("stats-content").classList.remove("hidden");$("stats-empty").classList.add("hidden");$("stats-status").textContent="Dashboard đã cập nhật theo điều kiện lọc."}
- catch(error){$("stats-status").textContent="Không tải được dữ liệu thống kê: "+error.message;$("stats-status").className="status error"}
+ $("stats-status").textContent="Đang cập nhật dashboard...";$("stats-status").classList.add("is-loading");
+ try{const data=await api("/api/statistics?"+params.toString());renderStats(data);$("stats-content").classList.remove("hidden");$("stats-empty").classList.add("hidden");$("stats-status").textContent="Dashboard đã cập nhật theo điều kiện lọc.";$("stats-status").classList.remove("is-loading")}
+ catch(error){$("stats-status").classList.remove("is-loading");$("stats-status").textContent="Không tải được dữ liệu thống kê: "+error.message;$("stats-status").className="status error"}
 }
 
 $("make-table-search").addEventListener("input",()=>applyTableRows("make"));
