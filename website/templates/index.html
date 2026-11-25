@@ -186,6 +186,27 @@ h1 {
     font-size:17px;
 }
 
+.field-section {
+    padding:18px;
+    border:1px solid;
+    border-radius:13px;
+    margin-top:18px;
+}
+.field-section-basic {
+    background:#f1f8fa;
+    border-color:#d8e9ed;
+}
+.field-section-extra {
+    background:#f6f8fa;
+    border-color:#e4e9ed;
+}
+.field-section .section-label {
+    margin:0 0 16px;
+    padding-bottom:10px;
+}
+.field-section-basic .section-label {color:#087e8b;border-color:#d5e8eb}
+.field-section-extra .section-label {color:#64748b;border-color:#e1e7eb}
+
 .section-label {
     font-weight:800;
     color:var(--blue);
@@ -429,6 +450,40 @@ h1 {
 
 .chart-card {min-height:360px}
 .chart-wrap {height:285px;position:relative}
+
+.table-tools {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin:-4px 0 14px;
+}
+.table-tools input {
+    width:min(100%,360px);
+    height:40px;
+    padding:0 12px;
+    border:1px solid #d8e2e8;
+    border-radius:9px;
+    background:#fbfdfe;
+    color:var(--text);
+    font:inherit;
+    font-size:12px;
+    outline:none;
+}
+.table-tools input:focus {
+    border-color:#5b8f9b;
+    box-shadow:0 0 0 3px rgba(8,126,139,.09);
+}
+.table-result-count {font-size:11px;color:#81909d;white-space:nowrap}
+.chart-card {border-top:3px solid transparent}
+.chart-price {border-top-color:#0f766e}
+.chart-count {border-top-color:#356a9a}
+.chart-median {border-top-color:#a87924}
+.chart-age {border-top-color:#64748b}
+.chart-price .card-title {color:#0f766e}
+.chart-count .card-title {color:#356a9a}
+.chart-median .card-title {color:#94691f}
+.chart-age .card-title {color:#64748b}
 
 .table-wrap {overflow-x:auto}
 table {width:100%;border-collapse:collapse;white-space:nowrap}
@@ -892,10 +947,14 @@ tbody tr:hover{background:#f0f9fd}
         <section class="card">
             <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M3 13.5 5 8.2a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8.2l2 5.3v4h-2v-2H5v2H3z"/><path d="m6 13.5 1.5-4h9l1.5 4M7 18h.01M17 18h.01"/></svg></span> Thông tin phương tiện</div>
             <form id="prediction-form">
-                <div class="section-label">THÔNG TIN CƠ BẢN</div>
-                <div class="form-grid" id="prediction-fields"></div>
-                <div class="section-label">THÔNG TIN KỸ THUẬT BỔ SUNG</div>
-                <div class="form-grid" id="prediction-extra"></div>
+                <div class="field-section field-section-basic">
+                    <div class="section-label">THÔNG TIN CƠ BẢN</div>
+                    <div class="form-grid" id="prediction-fields"></div>
+                </div>
+                <div class="field-section field-section-extra">
+                    <div class="section-label">THÔNG TIN BỔ SUNG</div>
+                    <div class="form-grid" id="prediction-extra"></div>
+                </div>
                 <div class="form-footer">
                     <button class="button" id="predict-button" type="submit">Dự đoán giá xe →</button>
                 </div>
@@ -962,7 +1021,14 @@ tbody tr:hover{background:#f0f9fd}
         <section class="card">
             <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M3 13.5 5 8.2a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8.2l2 5.3v4h-2v-2H5v2H3z"/><path d="m6 13.5 1.5-4h9l1.5 4M7 18h.01M17 18h.01"/></svg></span> Thông tin phương tiện</div>
             <form id="check-form">
-                <div class="section-label">THÔNG TIN CƠ BẢN</div><div class="form-grid" id="check-fields"></div><div class="section-label">THÔNG SỐ BỔ SUNG</div><div class="form-grid" id="check-extra"></div>
+                <div class="field-section field-section-basic">
+                    <div class="section-label">THÔNG TIN CƠ BẢN</div>
+                    <div class="form-grid" id="check-fields"></div>
+                </div>
+                <div class="field-section field-section-extra">
+                    <div class="section-label">THÔNG TIN BỔ SUNG</div>
+                    <div class="form-grid" id="check-extra"></div>
+                </div>
                 <div class="field" style="margin-top:20px;max-width:420px">
                     <label>Giá rao bán (VNĐ) <span class="required">*</span></label>
                     <input id="asking-price" type="text" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 450.000.000" required><small class="field-hint">Nhập giá đang được người bán rao, đơn vị VNĐ.</small>
@@ -1084,19 +1150,19 @@ tbody tr:hover{background:#f0f9fd}
         </div>
 
         <div class="chart-grid">
-            <section class="card chart-card">
+            <section class="card chart-card chart-price">
                 <div class="card-title">Phân bố mức giá rao bán</div><p class="chart-description">Số lượng tin đăng được chia theo từng khoảng giá.</p>
                 <div class="chart-wrap"><canvas id="price-chart"></canvas></div>
             </section>
-            <section class="card chart-card">
+            <section class="card chart-card chart-count">
                 <div class="card-title">Số lượng tin đăng theo hãng</div><p class="chart-description">Các hãng có nhiều tin đăng nhất trong phạm vi đang chọn.</p>
                 <div class="chart-wrap"><canvas id="make-chart"></canvas></div>
             </section>
-            <section class="card chart-card">
+            <section class="card chart-card chart-median">
                 <div class="card-title">Giá trung vị theo hãng xe</div><p class="chart-description">So sánh mức giá ở giữa của các tin đăng thuộc từng hãng.</p>
                 <div class="chart-wrap"><canvas id="make-price-chart"></canvas></div>
             </section>
-            <section class="card chart-card">
+            <section class="card chart-card chart-age">
                 <div class="card-title">Giá trung vị theo tuổi xe</div><p class="chart-description">Quan sát sự thay đổi mức giá theo số năm sử dụng.</p>
                 <div class="chart-wrap"><canvas id="age-price-chart"></canvas></div>
             </section>
@@ -1104,6 +1170,10 @@ tbody tr:hover{background:#f0f9fd}
 
         <section class="card" style="margin-bottom:20px">
             <div class="card-title">Bảng thống kê theo hãng xe</div>
+            <div class="table-tools">
+                <input type="search" id="make-table-search" placeholder="Tìm hãng xe hoặc giá trị..." autocomplete="off" aria-label="Lọc nhanh bảng theo hãng xe">
+                <span class="table-result-count" id="make-table-count"></span>
+            </div>
             <div class="table-wrap">
                 <table>
                     <thead><tr>
@@ -1117,6 +1187,10 @@ tbody tr:hover{background:#f0f9fd}
 
         <section class="card">
             <div class="card-title">Bảng thống kê theo tuổi xe</div>
+            <div class="table-tools">
+                <input type="search" id="age-table-search" placeholder="Tìm tuổi xe hoặc giá trị..." autocomplete="off" aria-label="Lọc nhanh bảng theo tuổi xe">
+                <span class="table-result-count" id="age-table-count"></span>
+            </div>
             <div class="table-wrap">
                 <table>
                     <thead><tr>
@@ -1174,7 +1248,7 @@ const REQUIRED = [
 
 const BASIC = [
     "hang_xe","dong_xe","tuoi_xe","so_km_da_di",
-    "khu_vuc","xuat_xu"
+    "khu_vuc","xuat_xu","kieu_dang","so_cho_ngoi","nhien_lieu"
 ];
 
 let OPTIONS = {};
@@ -1586,7 +1660,13 @@ function destroyChart(id) {
     if(charts[id]) charts[id].destroy();
 }
 
-const CHART_PALETTE = ["#087eaa"];
+const CHART_COLORS = {
+    price:"#0f766e",
+    count:"#356a9a",
+    median:"#a87924",
+    age:"#64748b"
+};
+let TABLE_ROWS = {make:[],age:[]};
 
 function compactChartValue(value) {
     const n=Number(value);
@@ -1637,7 +1717,7 @@ function chartBaseOptions() {
     };
 }
 
-function drawBar(id,labels,values,label,horizontal=false) {
+function drawBar(id,labels,values,label,horizontal=false,color=CHART_COLORS.price) {
     destroyChart(id);
     const options=chartBaseOptions();
     options.indexAxis=horizontal?"y":"x";
@@ -1654,9 +1734,9 @@ function drawBar(id,labels,values,label,horizontal=false) {
             datasets:[{
                 label,
                 data:values,
-                backgroundColor:"#087eaa",
-                hoverBackgroundColor:"#06b6d4",
-                borderColor:"#087eaa",
+                backgroundColor:color,
+                hoverBackgroundColor:color,
+                borderColor:color,
                 borderWidth:1,
                 borderRadius:horizontal?7:8,
                 borderSkipped:false,
@@ -1669,13 +1749,13 @@ function drawBar(id,labels,values,label,horizontal=false) {
     });
 }
 
-function drawLine(id,labels,values,label) {
+function drawLine(id,labels,values,label,color=CHART_COLORS.age) {
     destroyChart(id);
     const canvas=$(id);
     const ctx=canvas.getContext("2d");
     const gradient=ctx.createLinearGradient(0,0,0,canvas.clientHeight||260);
-    gradient.addColorStop(0,"rgba(6,182,212,.28)");
-    gradient.addColorStop(1,"rgba(6,182,212,.015)");
+    gradient.addColorStop(0,"rgba(100,116,139,.22)");
+    gradient.addColorStop(1,"rgba(100,116,139,.015)");
     const options=chartBaseOptions();
     options.plugins.tooltip.callbacks.label=context=>
         " "+label+": "+compactChartValue(context.parsed.y);
@@ -1687,33 +1767,46 @@ function drawLine(id,labels,values,label) {
             datasets:[{
                 label,
                 data:values,
-                borderColor:"#087eaa",
+                borderColor:color,
                 backgroundColor:gradient,
                 fill:true,
                 tension:.36,
                 borderWidth:3,
                 pointRadius:4,
                 pointHoverRadius:7,
-                pointBackgroundColor:"#087eaa",
+                pointBackgroundColor:color,
                 pointBorderColor:"#ffffff",
                 pointBorderWidth:2,
-                segment:{borderColor:"#087eaa"}
+                segment:{borderColor:color}
             }]
         },
         options
     });
 }
 
-function fillTable(id,rows,nameLabel) {
+function fillTable(id,rows,nameLabel,searchId) {
     const body=$(id);
-    body.innerHTML="";
+    const key=id==="make-table"?"make":"age";
+    TABLE_ROWS[key]=rows || [];
 
-    if(!rows.length) {
-        body.innerHTML='<tr><td colspan="6">Không có dữ liệu cho nhóm này.</td></tr>';
+    const query=$(searchId).value.trim().toLocaleLowerCase("vi");
+    const filtered=TABLE_ROWS[key].filter(row=>{
+        const searchable=[
+            rowName(row),rowCount(row),rowAverage(row),rowMedian(row),
+            rowP25(row),rowP75(row)
+        ].join(" ").toLocaleLowerCase("vi");
+        return searchable.includes(query);
+    });
+
+    body.innerHTML="";
+    $(key+"-table-count").textContent=filtered.length+" / "+TABLE_ROWS[key].length+" nhóm";
+
+    if(!filtered.length) {
+        body.innerHTML='<tr><td colspan="6">Không tìm thấy thông tin phù hợp.</td></tr>';
         return;
     }
 
-    rows.forEach(row=>{
+    filtered.forEach(row=>{
         const tr=document.createElement("tr");
         const values=[
             rowName(row),
@@ -1731,6 +1824,7 @@ function fillTable(id,rows,nameLabel) {
         body.appendChild(tr);
     });
 }
+
 
 function renderStats(data) {
     const s=data.tong_quan || {};
@@ -1760,12 +1854,14 @@ function renderStats(data) {
             return formatCompact(from)+" - "+formatCompact(to);
         }),
         distribution.map(x=>Number(getValue(x,["so_xe","so_luong","count"]) ?? 0)),
-        "Số lượng xe"
+        "Số lượng xe",
+        false,
+        CHART_COLORS.price
     );
 
     const makes=getRows(data,"top_hang_xe");
     const sortedMakes=[...makes].sort((a,b)=>rowCount(b)-rowCount(a)).slice(0,10);
-    drawBar("make-chart",sortedMakes.map(rowName),sortedMakes.map(rowCount),"Số lượng",true);
+    drawBar("make-chart",sortedMakes.map(rowName),sortedMakes.map(rowCount),"Số lượng",true,CHART_COLORS.count);
 
     // Dùng bảng thống kê đầy đủ vì top_hang_xe chỉ có số lượng, không có giá trung vị.
     const makeDetails=getRows(data,"bang_theo_hang","theo_hang");
@@ -1773,7 +1869,7 @@ function renderStats(data) {
         .sort((a,b)=>rowMedian(b)-rowMedian(a)).slice(0,10);
 
     drawBar("make-price-chart",makePrice.map(rowName),
-        makePrice.map(row=>rowMedian(row)/1e9),"Giá trung vị (tỷ)",true);
+        makePrice.map(row=>rowMedian(row)/1e9),"Giá trung vị (tỷ)",true,CHART_COLORS.median);
 
     const ages=getRows(data,"bang_theo_tuoi","theo_tuoi","tuoi_xe");
     const sortedAges=[...ages].sort((a,b)=>{
@@ -1782,10 +1878,10 @@ function renderStats(data) {
     });
 
     drawLine("age-price-chart",sortedAges.map(rowName),
-        sortedAges.map(row=>rowMedian(row)/1e9),"Giá trung vị (tỷ)");
+        sortedAges.map(row=>rowMedian(row)/1e9),"Giá trung vị (tỷ)",CHART_COLORS.age);
 
-    fillTable("make-table",makeDetails,"Hãng xe");
-    fillTable("age-table",getRows(data,"bang_theo_tuoi","theo_tuoi"),"Tuổi xe");
+    fillTable("make-table",makeDetails,"Hãng xe","make-table-search");
+    fillTable("age-table",getRows(data,"bang_theo_tuoi","theo_tuoi"),"Tuổi xe","age-table-search");
 }
 
 async function loadStatistics() {
@@ -1829,6 +1925,12 @@ async function loadStatistics() {
 }
 
 $("stats-button").addEventListener("click",loadStatistics);
+$("make-table-search").addEventListener("input",()=>{
+    fillTable("make-table",TABLE_ROWS.make,"Hãng xe","make-table-search");
+});
+$("age-table-search").addEventListener("input",()=>{
+    fillTable("age-table",TABLE_ROWS.age,"Tuổi xe","age-table-search");
+});
 
 async function initialize() {
     showPage();
