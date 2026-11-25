@@ -1022,6 +1022,116 @@ body{background:radial-gradient(ellipse at 8% 0%,rgba(38,183,194,.10),transparen
 @media(max-width:700px){.navbar{min-height:72px;backdrop-filter:none}.brand{font-size:21px;gap:9px}.brand-icon{width:42px;height:42px;border-radius:12px}.brand-car{width:35px;height:35px}.hero{min-height:300px}.field-section{padding:16px}.field input,.field select,#asking-price{height:46px}.number-actions{flex-basis:35px}.request-loading{min-height:300px;padding:24px 14px}}
 @media(max-width:420px){.brand{font-size:19px}.brand-icon{width:39px;height:39px}}
 
+
+/* ===== DUDOANGIAXECU LIGHT PREMIUM BACKGROUND ===== */
+:root{
+  --bg:#f4f9fb;
+  --brand-ink:#17384d;
+  --brand-teal:#078fa5;
+  --brand-cyan:#39bdc9;
+  --brand-line:#dcebf0;
+  --shadow:0 14px 38px rgba(34,83,105,.075);
+}
+html{background:#f4f9fb;scroll-behavior:smooth}
+body{
+  position:relative;
+  isolation:isolate;
+  min-height:100vh;
+  color:#29485a;
+  background:
+    radial-gradient(ellipse 760px 480px at 5% 2%,rgba(103,205,213,.19),transparent 72%),
+    radial-gradient(ellipse 720px 520px at 100% 17%,rgba(151,197,231,.20),transparent 70%),
+    radial-gradient(ellipse 800px 500px at 48% 100%,rgba(197,229,237,.22),transparent 72%),
+    linear-gradient(135deg,#f4fafb 0%,#f8fbfd 48%,#f1f7fa 100%);
+  background-attachment:fixed;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.32;
+  background-image:
+    linear-gradient(rgba(92,151,170,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(92,151,170,.055) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 72%);
+}
+body:after{
+  content:"";
+  position:fixed;
+  z-index:-1;
+  pointer-events:none;
+  width:460px;height:460px;
+  right:-260px;top:34%;
+  border:1px solid rgba(67,166,184,.10);
+  border-radius:50%;
+  box-shadow:0 0 0 34px rgba(67,166,184,.035),0 0 0 76px rgba(67,166,184,.025),0 0 0 122px rgba(67,166,184,.018);
+}
+.navbar{
+  background:rgba(255,255,255,.88);
+  border-bottom:1px solid rgba(203,225,232,.9);
+  box-shadow:0 8px 28px rgba(37,82,103,.065);
+  backdrop-filter:blur(18px);
+}
+.container{position:relative}
+.hero{
+  border:1px solid rgba(193,226,232,.9);
+  box-shadow:0 24px 55px rgba(33,93,115,.13);
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  z-index:1;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(115deg,rgba(224,249,250,.16),transparent 55%,rgba(255,255,255,.12));
+}
+.hero-content{z-index:2}
+.page-heading{
+  border:1px solid rgba(195,226,232,.92);
+  box-shadow:0 18px 42px rgba(35,91,111,.10);
+}
+.card,.result-panel,.shortcut,.kpi{
+  background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(250,253,254,.94));
+  border-color:rgba(211,229,234,.96);
+  box-shadow:0 13px 34px rgba(36,83,103,.065),0 2px 7px rgba(36,83,103,.025);
+}
+.card{backdrop-filter:blur(8px)}
+.field-section{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.field-section-basic{background:linear-gradient(135deg,rgba(237,250,251,.94),rgba(248,253,254,.96))}
+.field-section-extra{background:linear-gradient(135deg,rgba(246,250,252,.96),rgba(252,254,255,.96))}
+.result-panel{
+  background:
+    radial-gradient(circle at 100% 0%,rgba(92,197,207,.10),transparent 36%),
+    linear-gradient(145deg,rgba(255,255,255,.98),rgba(241,249,251,.97));
+}
+.kpi{position:relative;overflow:hidden}
+.kpi:after{
+  content:"";
+  position:absolute;
+  width:105px;height:105px;
+  right:-54px;top:-58px;
+  border:1px solid rgba(24,157,174,.10);
+  border-radius:50%;
+  box-shadow:0 0 0 15px rgba(24,157,174,.025);
+  pointer-events:none;
+}
+.chart-card{background:linear-gradient(145deg,#fff,#fbfdfe)}
+.insight-panel{border:1px solid #dcebf0;box-shadow:0 12px 30px rgba(36,83,103,.05)}
+.footer{background:rgba(255,255,255,.72);backdrop-filter:blur(10px)}
+@media(max-width:700px){
+  body{background-attachment:scroll}
+  body:before{background-size:32px 32px;opacity:.22}
+  body:after{display:none}
+  .navbar{background:rgba(255,255,255,.96)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* ===== END LIGHT PREMIUM BACKGROUND ===== */
+
 </style>
 </head>
 
