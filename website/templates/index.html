@@ -837,7 +837,7 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
         <section class="card">
             <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M3 13.5 5 8.2a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8.2l2 5.3v4h-2v-2H5v2H3z"/><path d="m6 13.5 1.5-4h9l1.5 4M7 18h.01M17 18h.01"/></svg></span> Thông tin phương tiện</div>
             <form id="check-form">
-                <div class="section-label">THÔNG TIN CƠ BẢN</div><div class="section-label">THÔNG TIN CƠ BẢN</div><div class="form-grid" id="check-fields"></div><div class="section-label">THÔNG SỐ BỔ SUNG</div><div class="form-grid" id="check-extra"></div><div class="section-label">THÔNG SỐ BỔ SUNG</div><div class="form-grid" id="check-extra"></div>
+                <div class="section-label">THÔNG TIN CƠ BẢN</div><div class="form-grid" id="check-fields"></div><div class="section-label">THÔNG SỐ BỔ SUNG</div><div class="form-grid" id="check-extra"></div>
                 <div class="field" style="margin-top:20px;max-width:420px">
                     <label>Giá rao bán (VNĐ) <span class="required">*</span></label>
                     <input id="asking-price" type="text" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 450.000.000" required><small class="field-hint">Nhập giá đang được người bán rao, đơn vị VNĐ.</small>
@@ -866,7 +866,7 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
                         <strong id="check-predicted">--</strong>
                     </div>
                     <div class="metric">
-                        <span>Chênh lệch</span>
+                        <span>Mức chênh lệch</span>
                         <strong id="check-difference">--</strong>
                     </div>
                     <div class="metric">
@@ -929,7 +929,7 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
         <div class="status" id="stats-status"></div>
     </section>
 
-    <div id="stats-content" class="hidden"><p class="stats-source">Nguồn dữ liệu: Bonbanh.com · Phạm vi: các tin đăng đã thu thập trong đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p>
+    <div id="stats-content" class="hidden"><p class="stats-source">Nguồn dữ liệu: Bonbanh.com · Phạm vi: các tin đăng đã thu thập trong đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p><p class="stats-source">Nguồn dữ liệu: Bonbanh.com · Phạm vi: các tin đăng đã thu thập trong đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p>
         <div class="kpi-grid">
             <div class="kpi">
                 <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M3 14 5 8.5A2 2 0 0 1 7 7h10a2 2 0 0 1 2 1.5L21 14v4h-2v-2H5v2H3z"/></svg></div>
@@ -1423,7 +1423,7 @@ function drawBar(id,labels,values,label,horizontal=false) {
             datasets:[{
                 label,
                 data:values,
-                backgroundColor:labels.map((_,i)=>`rgba(35, ${105+Math.min(i*3,70)}, 220, .75)`),
+                backgroundColor:labels.map((_,i)=>`rgba(8, 126, 139, ${.58+Math.min(i*.025,.3)})`),
                 borderRadius:6,
                 borderSkipped:false
             }]
@@ -1450,8 +1450,8 @@ function drawLine(id,labels,values,label) {
             datasets:[{
                 label,
                 data:values,
-                borderColor:"#1764d2",
-                backgroundColor:"rgba(23,100,210,.12)",
+                borderColor:"#087e8b",
+                backgroundColor:"rgba(8,126,139,.12)",
                 fill:true,
                 tension:.3,
                 pointRadius:3
