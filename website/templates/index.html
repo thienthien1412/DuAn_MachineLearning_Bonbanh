@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutoGiá | Định giá ô tô</title>
+<title>Dudoangiaxecu | Định giá ô tô</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -569,6 +569,63 @@ tbody tr:hover{background:#f7f9fb}
 @media(max-width:420px){.nav-links a{font-size:10px;padding:8px 7px}.form-grid{grid-template-columns:1fr}.kpi-value{font-size:18px}}
 /* ===== END VISUAL REFINEMENT ===== */
 
+
+/* ===== DUDOANGIAXECU BRAND + DISTINCTIVE VISUAL SYSTEM ===== */
+:root{
+  --navy:#101f32;--blue:#174f78;--blue2:#286d96;--pale:#edf2f5;
+  --bg:#f2f4f6;--text:#243649;--muted:#718091;--border:#dfe5e9;
+  --accent:#e2a34b;--shadow:0 14px 38px rgba(16,31,50,.08);
+}
+body{background:var(--bg);color:var(--text)}
+.navbar{height:82px;background:#101f32;border:0;box-shadow:0 5px 24px rgba(8,20,34,.18)}
+.brand{color:#fff!important;font-size:24px;font-weight:800;letter-spacing:-1px}
+.brand-icon{background:#e2a34b;color:#101f32;border-radius:11px;width:43px;height:43px}
+.brand-icon:before{content:"DG";font-size:15px;font-weight:900;color:#101f32}
+.nav-links a{color:#d3dce4;font-weight:600}
+.nav-links a:hover,.nav-links a.active{background:rgba(226,163,75,.16);color:#f0bd70}
+.container{max-width:1360px;padding-top:36px}
+.hero{min-height:390px;border-radius:18px;padding:58px 60px;margin-bottom:32px;
+ background-image:linear-gradient(90deg,rgba(8,22,37,.97) 0%,rgba(10,31,51,.88) 43%,rgba(10,31,51,.12) 100%),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90');
+ background-position:center,center 57%;box-shadow:0 20px 50px rgba(11,29,47,.16)}
+.hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent)}
+.hero .eyebrow,.page-heading .eyebrow{color:#efb967;font-size:10px;letter-spacing:2.3px;font-weight:800}
+.hero h1{font-size:clamp(36px,4.2vw,54px);line-height:1.12;max-width:590px;margin:15px 0}
+.hero p{color:#d7e0e8;font-size:15px;max-width:520px}
+.button{background:#e2a34b;color:#17283a;border-radius:8px;font-weight:800;padding:14px 23px}
+.button:hover{background:#f0b65f;color:#101f32}
+.button.secondary{background:#eaf0f4;color:#174f78}
+.page-heading{min-height:255px;padding:42px 46px;border-radius:16px;background:#101f32;box-shadow:0 16px 36px rgba(16,31,50,.13)}
+.page-heading:after{background-image:linear-gradient(90deg,rgba(8,22,37,.96),rgba(10,31,51,.78) 52%,rgba(10,31,51,.24)),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=90');background-position:center 55%}
+#page-stats .page-heading:after{background-image:linear-gradient(90deg,rgba(8,22,37,.96),rgba(10,31,51,.78) 52%,rgba(10,31,51,.24)),url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1800&q=90')}
+.page-heading h1{font-size:clamp(30px,3.5vw,42px);margin:12px 0;color:#fff}
+.page-heading .subtitle{color:#d7e0e8;font-size:14px}
+.card,.result-panel,.shortcut,.kpi{border-radius:14px;box-shadow:var(--shadow);border-color:#e0e6eb}
+.card{padding:29px}
+.card-title{font-size:16px;color:#142d45}
+.card-title .symbol{background:#f8eddd;color:#a66b22;border-radius:9px}
+.section-label{color:#a66b22;border-color:#e8e1d7}
+.field input:focus,.field select:focus{border-color:#d49a48;box-shadow:0 0 0 3px rgba(226,163,75,.15)}
+.result-panel{background:linear-gradient(145deg,#f9fbfc,#edf2f5);border-color:#dce4e9}
+.result-price{background:linear-gradient(125deg,#10243a,#1b4968);border-radius:12px}
+.result-price strong{color:#f3bd70}
+.metric{border-radius:10px}
+.shortcut{border-left:4px solid #e2a34b}
+.shortcut:hover{border-color:#d79a43;box-shadow:0 16px 35px rgba(16,31,50,.11)}
+.shortcut-icon{background:#f8eddd}
+.kpi{border-top:3px solid #e2a34b}
+.kpi-icon{background:#f8eddd;color:#a66b22}
+.stats-filter .button{height:45px}
+.chart-card{border-radius:14px}
+.footer{background:#101f32;color:#aebdca;border:0}
+@media(max-width:700px){
+ .navbar{background:#101f32;padding:12px 4%}
+ .hero{padding:34px 25px;min-height:320px;background-position:center,right 50%;border-radius:13px}
+ .hero h1{font-size:32px}
+ .page-heading{padding:30px 24px;min-height:205px;border-radius:13px}
+ .page-heading h1{font-size:29px}
+ .card{padding:20px}
+}
+
 </style>
 </head>
 
@@ -577,7 +634,7 @@ tbody tr:hover{background:#f7f9fb}
 <header class="navbar">
     <a href="/" class="brand" style="text-decoration:none">
         <span class="brand-icon">🚘</span>
-        AutoGiá
+        Dudoangiaxecu
     </a>
     <nav class="nav-links">
         <a href="/" id="nav-home">Dự đoán giá</a>
@@ -592,7 +649,7 @@ tbody tr:hover{background:#f7f9fb}
 <section id="page-home" class="hidden">
     <div class="hero">
         <div class="hero-content">
-            <div class="eyebrow">AUTOGIÁ · ĐỊNH GIÁ XE ĐÃ QUA SỬ DỤNG</div>
+            <div class="eyebrow">DUDOANGIAXECU · ĐỊNH GIÁ XE ĐÃ QUA SỬ DỤNG</div>
             <h1>Định giá ô tô dễ dàng</h1>
             <p>Ước tính giá trị xe dựa trên dữ liệu rao bán thực tế và mô hình học máy.</p>
             <button class="button" onclick="document.getElementById('prediction-form').scrollIntoView({behavior:'smooth'})">
@@ -664,7 +721,7 @@ tbody tr:hover{background:#f7f9fb}
 <!-- TRANG KIỂM TRA GIÁ -->
 <section id="page-check" class="hidden">
     <div class="page-heading">
-        <div class="eyebrow">AUTOGIÁ / ĐỐI CHIẾU GIÁ</div>
+        <div class="eyebrow">DUDOANGIAXECU / ĐỐI CHIẾU GIÁ</div>
         <h1>Kiểm tra giá rao bán</h1>
         <p class="subtitle">So sánh giá người bán đưa ra với giá ước tính từ mô hình và dữ liệu thị trường.</p>
     </div>
@@ -727,7 +784,7 @@ tbody tr:hover{background:#f7f9fb}
 <!-- TRANG THỐNG KÊ -->
 <section id="page-stats" class="hidden">
     <div class="page-heading">
-        <div class="eyebrow">AUTOGIÁ / PHÂN TÍCH DỮ LIỆU</div>
+        <div class="eyebrow">DUDOANGIAXECU / PHÂN TÍCH DỮ LIỆU</div>
         <h1>Thống kê thị trường ô tô</h1>
         <p class="subtitle">Khám phá mặt bằng giá rao bán và đặc điểm các tin đăng trong tập dữ liệu.</p>
     </div>
@@ -836,7 +893,7 @@ tbody tr:hover{background:#f7f9fb}
 
 </main>
 
-<footer class="footer">© 2026 AutoGiá · Hệ thống dự đoán giá ô tô đã qua sử dụng</footer>
+<footer class="footer">© 2026 Dudoangiaxecu · Hệ thống dự đoán giá ô tô đã qua sử dụng</footer>
 
 <script>
 const FEATURES = [
