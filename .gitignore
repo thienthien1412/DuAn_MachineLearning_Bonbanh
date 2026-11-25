@@ -1,8 +1,11 @@
-﻿# Python environment
+﻿
+# Python environment
 venv/
+.venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.ipynb_checkpoints/
 
 # Environment variables
 .env
@@ -11,19 +14,15 @@ __pycache__/
 data/*
 !data/
 !data/processed/
-!data/splits/
 
 data/processed/*
 !data/processed/bonbanh_processed.csv
 
-data/splits/*
-!data/splits/train.csv
-!data/splits/validation.csv
-!data/splits/test.csv
-
-# Logs 
+# Local databases and logs
+*.db
+*.sqlite
+*.sqlite3
 logs/
-
 
 # System files
 .DS_Store
@@ -31,4 +30,3 @@ Thumbs.db
 
 # IDE
 .vscode/
-src/model/model_training_cu.py
