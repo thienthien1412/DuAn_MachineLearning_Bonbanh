@@ -280,100 +280,59 @@ def lua_chon_thong_ke():
 
 @app.route("/api/statistics", methods=["GET"])
 def thong_ke_thi_truong():
-    hang = request.args.get("make", "").strip()
-    tuoi_tu = request.args.get("age_min", "").strip()
-    tuoi_den = request.args.get("age_max", "").strip()
-    gia_tu = request.args.get("price_min", "").strip()
-    gia_den = request.args.get("price_max", "").strip()
+    loai = request.args.get("type", "all").strip()
+    gia_tri = request.args.get("value", "").strip()
 
-    du_lieu_loc = DU_LIEU_XE.copy()
+    if loai not in ["all", "make", "age"]:
+        return jsonify({"loi": "Phạm vi thống kê không hợp lệ"}), 400
 
-    if hang:
-        du_lieu_loc = du_lieu_loc[
-            du_lieu_loc["hang_xe"].astype(str).str.contains(
-                hang, case=False, na=False, regex=False
-            )
-        ]
+    if loai != "all" and not gia_tri:
+        return jsonify({"loi": "Vui lòng chọn giá trị thống kê"}), 400
 
-    try:
-        if tuoi_tu:
-            du_lieu_loc = du_lieu_loc[
-                du_lieu_loc["tuoi_xe"] >= int(tuoi_tu)
-            ]
-        if tuoi_den:
-            du_lieu_loc = du_lieu_loc[
-                du_lieu_loc["tuoi_xe"] <= int(tuoi_den)
-            ]
-        if gia_tu:
-            du_lieu_loc = du_lieu_loc[
-                du_lieu_loc["gia_ban"] >= float(gia_tu)
-            ]
-        if gia_den:
-            du_lieu_loc = du_lieu_loc[
-                du_lieu_loc["gia_ban"] <= float(gia_den)
-            ]
-    except ValueError:
-        return jsonify({"loi": "Giá trị bộ lọc không hợp lệ"}), 400
+    # KPI và biểu đồ luôn được tính trên toàn bộ dữ liệu.
+    tong_quan = tinh_chi_so(DU_LIEU_XE)
 
-    if tuoi_tu and tuoi_den and int(tuoi_tu) > int(tuoi_den):
-        return jsonify({"loi": "Khoảng tuổi xe không hợp lệ"}), 400
-    if gia_tu and gia_den and float(gia_tu) > float(gia_den):
-        return jsonify({"loi": "Khoảng giá không hợp lệ"}), 400
-
-    if du_lieu_loc.empty:
-        return jsonify({
-            "loi": "Không tìm thấy dữ liệu thống kê"
-        }), 404
-
-    tong_quan = tinh_chi_so(du_lieu_loc)
-
-    # Top 10 hang xe theo so luong tin dang
     top_hang = (
-        du_lieu_loc.groupby("hang_xe")["gia_ban"]
+        DU_LIEU_XE.groupby("hang_xe")["gia_ban"]
         .count()
         .sort_values(ascending=False)
         .head(10)
     )
 
     bieu_do_hang = []
-
     for ten_hang, so_luong in top_hang.items():
         bieu_do_hang.append({
             "hang_xe": str(ten_hang),
             "so_xe": int(so_luong)
         })
 
-    # Bang so sanh theo hang xe
-    bang_hang = tao_bang_theo_nhom(
-        du_lieu_loc,
-        "hang_xe"
-    )
+    # Hai bảng được tạo riêng để bộ lọc không ảnh hưởng KPI và biểu đồ.
+    bang_hang = tao_bang_theo_nhom(DU_LIEU_XE, "hang_xe")
+    bang_hang.sort(key=lambda x: x["so_xe"], reverse=True)
 
-    bang_hang.sort(
-        key=lambda x: x["so_xe"],
-        reverse=True
-    )
+    bang_tuoi = tao_bang_theo_nhom(DU_LIEU_XE, "tuoi_xe")
+    bang_tuoi.sort(key=lambda x: x["gia_tri"])
 
-    # Bang so sanh theo tuoi xe
-    bang_tuoi = tao_bang_theo_nhom(
-        du_lieu_loc,
-        "tuoi_xe"
-    )
+    if loai == "make":
+        bang_hang = [
+            dong for dong in bang_hang
+            if dong["gia_tri"].casefold() == gia_tri.casefold()
+        ]
 
-    bang_tuoi.sort(
-        key=lambda x: x["gia_tri"]
-    )
+    elif loai == "age":
+        try:
+            tuoi = int(gia_tri)
+        except ValueError:
+            return jsonify({"loi": "Tuổi xe không hợp lệ"}), 400
+
+        bang_tuoi = [
+            dong for dong in bang_tuoi
+            if dong["gia_tri"] == tuoi
+        ]
 
     return jsonify({
-        "bo_loc": {
-            "hang": hang,
-            "tuoi_tu": tuoi_tu,
-            "tuoi_den": tuoi_den,
-            "gia_tu": gia_tu,
-            "gia_den": gia_den
-        },
         "tong_quan": tong_quan,
-        "phan_bo_gia": tao_bieu_do_phan_bo(du_lieu_loc),
+        "phan_bo_gia": tao_bieu_do_phan_bo(DU_LIEU_XE),
         "top_hang_xe": bieu_do_hang,
         "bang_theo_hang": bang_hang,
         "bang_theo_tuoi": bang_tuoi
