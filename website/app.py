@@ -44,6 +44,37 @@ DU_LIEU_XE = DU_LIEU_XE.dropna(
     subset=["gia_ban"]
 ).copy()
 
+GIOI_HAN_DAU_VAO = {
+    "so_km_da_di": 1_000_000,
+    "tuoi_xe": 50,
+    "so_cho_ngoi": 100,
+    "so_cua": 10,
+    "dung_tich_dong_co": 10
+}
+GIOI_HAN_GIA_RAO = 100_000_000_000
+
+
+def kiem_tra_gioi_han_dau_vao(thong_tin):
+    ten_cot = {
+        "so_km_da_di": "Số km đã đi",
+        "tuoi_xe": "Tuổi xe",
+        "so_cho_ngoi": "Số chỗ ngồi",
+        "so_cua": "Số cửa",
+        "dung_tich_dong_co": "Dung tích động cơ"
+    }
+    for cot, gioi_han in GIOI_HAN_DAU_VAO.items():
+        gia_tri = thong_tin.get(cot)
+        if gia_tri is None or gia_tri == "":
+            continue
+        try:
+            so = float(gia_tri)
+        except (TypeError, ValueError):
+            raise ValueError(f"{ten_cot[cot]} phải là số hợp lệ")
+        if not np.isfinite(so) or so < 0 or so > gioi_han:
+            raise ValueError(f"{ten_cot[cot]} phải nằm trong khoảng 0–{gioi_han:,}")
+    return True
+
+
 # Nap mo hinh mot lan khi khoi dong website
 du_doan.tai_mo_hinh()
 
@@ -97,6 +128,7 @@ def du_doan_gia_xe():
         }), 400
 
     try:
+        kiem_tra_gioi_han_dau_vao(thong_tin)
         ket_qua = du_doan.du_doan_gia(thong_tin)
 
         return jsonify({
@@ -134,7 +166,10 @@ def kiem_tra_gia_rao():
 
         if not np.isfinite(gia_rao) or gia_rao <= 0:
             raise ValueError("Giá rao bán phải lớn hơn 0")
+        if gia_rao > GIOI_HAN_GIA_RAO:
+            raise ValueError("Giá rao bán không được vượt quá 100 tỷ đồng")
 
+        kiem_tra_gioi_han_dau_vao(thong_tin)
         ket_qua = du_doan.du_doan_gia(thong_tin)
 
         gia_du_doan = ket_qua["gia_du_doan"]
@@ -194,7 +229,7 @@ def tinh_chi_so(du_lieu):
     }
 
 
-def tao_bieu_do_phan_bo(du_lieu, so_nhom=12):
+def tao_bieu_do_phan_bo(du_lieu):
     gia = pd.to_numeric(
         du_lieu["gia_ban"],
         errors="coerce"
@@ -203,20 +238,26 @@ def tao_bieu_do_phan_bo(du_lieu, so_nhom=12):
     if gia.empty:
         return []
 
-    dem, bien = np.histogram(
-        gia,
-        bins=so_nhom
-    )
+    moc_gia = [
+        0, 200_000_000, 400_000_000, 600_000_000,
+        800_000_000, 1_000_000_000, 1_200_000_000,
+        1_400_000_000, 1_600_000_000, 1_800_000_000,
+        2_000_000_000, 5_000_000_000, 10_000_000_000
+    ]
 
     ket_qua = []
-
-    for i in range(len(dem)):
+    for dau, cuoi in zip(moc_gia[:-1], moc_gia[1:]):
         ket_qua.append({
-            "tu": float(bien[i]),
-            "den": float(bien[i + 1]),
-            "so_xe": int(dem[i])
+            "tu": float(dau),
+            "den": float(cuoi),
+            "so_xe": int(((gia >= dau) & (gia < cuoi)).sum())
         })
 
+    ket_qua.append({
+        "tu": float(moc_gia[-1]),
+        "den": None,
+        "so_xe": int((gia >= moc_gia[-1]).sum())
+    })
     return ket_qua
 
 
@@ -349,8 +390,13 @@ def thong_ke_thi_truong():
 
         if phan_bo:
             khoang = max(phan_bo, key=lambda x: x["so_xe"])
+            mo_ta_khoang = (
+                f"Trên {khoang['tu']/1e9:.0f} tỷ đồng"
+                if khoang["den"] is None
+                else f"{khoang['tu']/1e9:.2f}–{khoang['den']/1e9:.2f} tỷ đồng"
+            )
             insights.append(
-                f"Khoảng giá có nhiều tin nhất là {khoang['tu']/1e9:.2f}–{khoang['den']/1e9:.2f} tỷ đồng "
+                f"Khoảng giá có nhiều tin nhất là {mo_ta_khoang} "
                 f"với {khoang['so_xe']:,} tin đăng."
             )
 
