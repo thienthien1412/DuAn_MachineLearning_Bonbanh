@@ -1203,6 +1203,90 @@ body:after{
 @media(max-width:420px){.brand-word{font-size:19px}}
 /* ===== END IDENTITY REFRESH ===== */
 
+
+/* ===== PREMIUM DASHBOARD + BRAND DETAIL PASS ===== */
+.brand-icon{width:56px;height:56px;flex-basis:56px;border-radius:17px;background:linear-gradient(145deg,#073d57 0%,#087f9b 48%,#31c1c9 100%);box-shadow:0 10px 24px rgba(5,105,132,.28),inset 0 1px 0 rgba(255,255,255,.42)}
+.brand-car{width:47px;height:47px;filter:drop-shadow(0 2px 2px rgba(0,35,55,.2))}
+.brand-word{font-size:27px;letter-spacing:-1.3px}
+.brand-word span:first-child{color:#14364d}
+.brand-word span:last-child{color:#07869e}
+.nav-links a{position:relative;border-radius:9px;font-weight:700}
+.nav-links a.active{background:linear-gradient(110deg,rgba(7,126,170,.10),rgba(6,182,212,.14));color:#087b98}
+.nav-links a.active:after{content:"";position:absolute;left:17px;right:17px;bottom:4px;height:2px;border-radius:3px;background:linear-gradient(90deg,#078ba6,#32c3cb)}
+#page-stats .card:first-child{border:1px solid #cfe4e9;background:linear-gradient(125deg,rgba(255,255,255,.98),rgba(239,250,251,.96));box-shadow:0 16px 36px rgba(18,80,99,.075)}
+#page-stats .card:first-child .card-title{font-size:16px}
+.dashboard-filter-summary{font-size:12px!important;color:#547684!important}
+.kpi-grid{gap:16px;margin:24px 0}
+.kpi{
+ display:grid;grid-template-columns:54px minmax(0,1fr);grid-template-rows:auto 1fr;
+ column-gap:14px;align-content:center;align-items:center;
+ min-height:126px;padding:20px 18px;
+ position:relative;overflow:hidden;
+ border:1px solid #d6e6eb!important;border-radius:16px!important;
+ border-top:1px solid #d6e6eb!important;
+ background:linear-gradient(145deg,#fff 0%,#f9fdfe 65%,#eff9fb 100%)!important;
+ box-shadow:0 12px 30px rgba(19,77,99,.075),inset 0 1px 0 rgba(255,255,255,.95)!important;
+}
+.kpi:before{content:none!important}
+.kpi:after{right:-34px;top:-44px;width:112px;height:112px;border-color:rgba(8,145,164,.12);box-shadow:0 0 0 14px rgba(8,145,164,.035)}
+.kpi-icon{
+ grid-column:1;grid-row:1/3;align-self:center;
+ width:52px;height:52px;margin:0;border-radius:15px;
+ background:linear-gradient(145deg,#e1f5f7,#ccecf0)!important;
+ color:#087f98!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 5px 12px rgba(10,130,151,.08);
+}
+.kpi:nth-child(2) .kpi-icon{background:linear-gradient(145deg,#e4f2ff,#d6e8fb)!important;color:#286ca2!important}
+.kpi:nth-child(3) .kpi-icon{background:linear-gradient(145deg,#e8f5ee,#d7eee3)!important;color:#23805f!important}
+.kpi:nth-child(4) .kpi-icon{background:linear-gradient(145deg,#fff3e2,#fbe6c8)!important;color:#b87528!important}
+.kpi:nth-child(5) .kpi-icon{background:linear-gradient(145deg,#eeeaff,#e1dcfb)!important;color:#6d62ae!important}
+.kpi-icon svg{width:29px!important;height:29px!important;stroke-width:1.8!important;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.kpi-label{grid-column:2;grid-row:1;align-self:end;font-size:12px!important;font-weight:700!important;letter-spacing:.05px;color:#637d89!important;margin-bottom:6px}
+.kpi-value{grid-column:2;grid-row:2;align-self:start;margin:0!important;font-size:clamp(19px,1.65vw,24px)!important;line-height:1.25;font-weight:800;color:#123b52!important;letter-spacing:-.65px;overflow-wrap:normal;white-space:nowrap}
+.insight-panel{margin:22px 0 24px!important;padding:27px 28px!important;border:1px solid #cfe4e9!important;border-radius:17px!important;background:linear-gradient(125deg,#fff 0%,#f2fbfc 100%)!important;box-shadow:0 14px 32px rgba(18,80,99,.065)!important}
+.insight-heading{margin-bottom:20px!important}
+.insight-kicker{font-size:10px!important;letter-spacing:1.7px!important;color:#078ca2!important}
+.insight-heading h2{font-size:20px!important;color:#123b52!important;letter-spacing:-.45px}
+.insight-live{font-size:11px!important;font-weight:700;padding:8px 12px!important;background:#e5f6f2!important;color:#187b67!important}
+.insight-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+.insight-item{align-items:flex-start;gap:13px;padding:17px 18px!important;min-height:94px;border:1px solid #d8e9ed!important;border-radius:12px!important;background:rgba(255,255,255,.9)!important;box-shadow:0 4px 13px rgba(22,73,91,.035)}
+.insight-number{flex:0 0 31px;width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(145deg,#e1f5f7,#d2edf1);color:#087f98!important;font-size:12px!important}
+.insight-item p{font-size:13px!important;line-height:1.75!important;color:#3f5f6e!important;font-weight:500}
+.insight-empty{font-size:13px!important}
+.chart-card{border-radius:16px!important}
+.chart-card .card-title{font-size:15px!important}
+.chart-description{font-size:11px!important;line-height:1.7!important}
+.car-visual{width:270px!important;height:138px!important;margin-bottom:12px!important;background:radial-gradient(ellipse,rgba(32,172,186,.18),rgba(32,172,186,0) 72%)!important}
+.car-visual svg{width:270px!important;height:130px!important;filter:drop-shadow(0 10px 12px rgba(12,79,97,.16))!important}
+.waiting-state>strong{font-size:18px!important}
+.waiting-state>p{font-size:12px!important;max-width:390px!important}
+.waiting-steps{max-width:410px;margin-top:22px!important}
+.waiting-steps>div{padding:13px 8px!important;border-radius:11px!important;background:linear-gradient(145deg,#fff,#f7fcfd)!important;box-shadow:0 4px 12px rgba(18,75,93,.035)}
+.waiting-steps b{font-size:11px!important}
+.waiting-steps span{font-size:10px!important}
+.loading-emblem{background:linear-gradient(145deg,#e4f7f9,#cfeef1)!important;box-shadow:0 10px 25px rgba(8,132,151,.12)}
+.loading-emblem svg{color:#087f98!important}
+.request-loading>strong{font-size:18px!important}
+.request-loading>p{font-size:12px!important}
+@media(max-width:1050px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi-value{font-size:21px!important}}
+@media(max-width:700px){
+ .brand-icon{width:46px;height:46px;flex-basis:46px}.brand-car{width:39px;height:39px}.brand-word{font-size:22px}
+ .kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .kpi{grid-template-columns:43px minmax(0,1fr);column-gap:10px;min-height:108px;padding:15px 12px}
+ .kpi-icon{width:42px;height:42px;border-radius:12px}
+ .kpi-icon svg{width:25px!important;height:25px!important}
+ .kpi-label{font-size:10px!important}
+ .kpi-value{font-size:clamp(16px,4vw,20px)!important;white-space:normal}
+ .insight-panel{padding:20px 16px!important}
+ .insight-heading h2{font-size:18px!important}
+ .insight-grid{grid-template-columns:1fr!important}
+ .insight-item{padding:14px!important}
+ .insight-item p{font-size:12px!important}
+ .car-visual{width:245px!important;height:120px!important}.car-visual svg{width:245px!important;height:118px!important}
+}
+@media(max-width:420px){.kpi{grid-template-columns:38px minmax(0,1fr);column-gap:8px;padding:13px 10px}.kpi-icon{width:37px;height:37px}.kpi-label{font-size:9px!important}.kpi-value{font-size:15px!important}}
+/* ===== END PREMIUM DETAIL PASS ===== */
+
 </style>
 </head>
 
@@ -1211,13 +1295,15 @@ body:after{
 <header class="navbar">
     <a href="/" class="brand" style="text-decoration:none" aria-label="Dudoangiaxecu - Trang chủ">
         <span class="brand-icon" aria-hidden="true">
-            <svg class="brand-car" viewBox="0 0 64 64" fill="none">
-                <path d="M11 43a22 22 0 1 1 42 0" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
-                <path d="M17 29l4 2M25 19l2.5 4M39 19l-2.5 4M47 29l-4 2" stroke="#d8fbff" stroke-width="2.6" stroke-linecap="round"/>
-                <path d="M32 38 44 23" stroke="#fff" stroke-width="3.8" stroke-linecap="round"/>
-                <circle cx="32" cy="39" r="4.8" fill="#fff"/>
-                <path d="M18 49h28" stroke="#b9f4f4" stroke-width="2.4" stroke-linecap="round"/>
-                <path d="M23 55h18" stroke="#b9f4f4" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            <svg class="brand-car" viewBox="0 0 64 64" fill="none" role="img" aria-label="Đồng hồ định giá">
+                <circle cx="32" cy="32" r="27" stroke="rgba(255,255,255,.24)" stroke-width="1.4"/>
+                <path d="M9.5 43a24 24 0 1 1 45 0" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
+                <path d="M14.5 34l4.2 1.4M19.5 22.5l3.5 3M29 15.5l.8 4.7M40 16.5l-1.7 4.5M49 25l-3.7 2.7M53 36l-4.5.8" stroke="#d9fbff" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M32 38 45 21" stroke="#ffd58a" stroke-width="3.4" stroke-linecap="round"/>
+                <circle cx="32" cy="38" r="6.2" fill="#f4fbff" stroke="#087f9b" stroke-width="2"/>
+                <circle cx="32" cy="38" r="2.1" fill="#087f9b"/>
+                <path d="M16 49h32" stroke="#c9f6f6" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M23 54h18" stroke="#c9f6f6" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
             </svg>
         </span>
         <span class="brand-word"><span>Dudoan</span><span>giaxecu</span></span>
@@ -1267,14 +1353,24 @@ body:after{
         <section class="result-panel">
             <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="M7 16v-4m5 4V8m5 8V4"/></svg></span> Kết quả dự đoán</div>
             <div id="prediction-empty" class="result-empty waiting-state waiting-prediction">
-                <div class="waiting-visual car-visual" aria-hidden="true"><svg viewBox="0 0 240 100"><path d="M18 67 27 48q4-9 15-11l25-4 22-23q5-5 14-5h48q15 0 25 12l18 20 21 7q10 3 10 14v15h-20a22 22 0 0 0-43 0H80a22 22 0 0 0-43 0H18z" fill="currentColor"/><path d="m77 32 19-20q3-3 9-3h20v23zm57-23h17q10 0 17 9l13 14h-47z" fill="#d9f0f1"/><path d="M21 57h194M104 37v27m42-27v27" fill="none" stroke="#d9f0f1" stroke-width="2"/><circle cx="58" cy="70" r="15" fill="#123b52" stroke="#fff" stroke-width="5"/><circle cx="179" cy="70" r="15" fill="#123b52" stroke="#fff" stroke-width="5"/><circle cx="58" cy="70" r="5" fill="#73c4ca"/><circle cx="179" cy="70" r="5" fill="#73c4ca"/></svg></div><span class="waiting-kicker">ĐỊNH GIÁ TỪ DỮ LIỆU THỊ TRƯỜNG</span><strong>Nhận ước tính giá cho chiếc xe của bạn</strong><p>Nhập thông tin xe ở bên trái. Hệ thống sẽ phân tích các đặc điểm và hiển thị mức giá tham khảo tại đây.</p>
+                <div class="waiting-visual car-visual" aria-hidden="true"><svg viewBox="0 0 320 140" fill="none">
+<defs><linearGradient id="carPaint" x1="35" y1="48" x2="280" y2="112" gradientUnits="userSpaceOnUse"><stop stop-color="#0b7890"/><stop offset=".55" stop-color="#16a7b3"/><stop offset="1" stop-color="#65cbd0"/></linearGradient><linearGradient id="glass" x1="95" y1="35" x2="220" y2="78" gradientUnits="userSpaceOnUse"><stop stop-color="#dff8fb"/><stop offset="1" stop-color="#9bcbd7"/></linearGradient></defs>
+<ellipse cx="160" cy="116" rx="119" ry="8" fill="#0b7188" opacity=".10"/>
+<path d="M31 96 43 78q5-8 17-11l39-8 31-31q7-7 18-7h49q17 0 29 13l24 27 24 7q11 3 15 14l5 14h-26a22 22 0 0 0-43 0H94a22 22 0 0 0-43 0H31z" fill="url(#carPaint)" stroke="#08788e" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="m108 57 28-28q5-5 13-5h27v33zm78-33h10q13 0 22 11l19 22h-51z" fill="url(#glass)" stroke="#e7fbfc" stroke-width="2" stroke-linejoin="round"/>
+<path d="M174 25v34m-66-2h132M145 63v27m47-27v27" stroke="#e6fbfc" stroke-width="2" opacity=".72"/>
+<path d="M38 83h16m214 0 17 5" stroke="#f4d59c" stroke-width="4" stroke-linecap="round"/>
+<path d="M31 98h18m223 0h17" stroke="#0a536b" stroke-width="2" stroke-linecap="round"/>
+<circle cx="73" cy="99" r="19" fill="#153b50" stroke="#eaf8fa" stroke-width="5"/><circle cx="73" cy="99" r="9" stroke="#9edbe0" stroke-width="2"/><path d="m73 90 0 18m-9-9h18m-15-6 12 12m0-12-12 12" stroke="#bce9ec" stroke-width="1.5"/>
+<circle cx="245" cy="99" r="19" fill="#153b50" stroke="#eaf8fa" stroke-width="5"/><circle cx="245" cy="99" r="9" stroke="#9edbe0" stroke-width="2"/><path d="m245 90 0 18m-9-9h18m-15-6 12 12m0-12-12 12" stroke="#bce9ec" stroke-width="1.5"/>
+</svg></div><span class="waiting-kicker">ĐỊNH GIÁ TỪ DỮ LIỆU THỊ TRƯỜNG</span><strong>Nhận ước tính giá cho chiếc xe của bạn</strong><p>Nhập thông tin xe ở bên trái. Hệ thống sẽ phân tích các đặc điểm và hiển thị mức giá tham khảo tại đây.</p>
                 <div class="waiting-steps">
                     <div><b>01</b><span>Nhập thông tin xe</span></div>
                     <div><b>02</b><span>Phân tích dữ liệu</span></div>
                     <div><b>03</b><span>Nhận kết quả</span></div>
                 </div>
             </div>
-            <div id="prediction-loading" class="request-loading hidden" role="status" aria-live="polite"><div class="loading-emblem"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M5 42 12 27q2-5 8-6l11-2 9-11h8q5 0 8 5l5 9 5 3q3 2 3 6v11h-8a7 7 0 0 0-14 0H27a7 7 0 0 0-14 0H5z" fill="currentColor"/><circle cx="19" cy="47" r="5" fill="#fff" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="47" r="5" fill="#fff" stroke="currentColor" stroke-width="3"/></svg><span class="scan-ring"></span></div><strong>Đang phân tích thông tin xe</strong><p>Hệ thống đang đối chiếu các đặc điểm xe với dữ liệu thị trường để ước tính mức giá tham khảo.</p><div class="loading-track"><span></span></div><small>Vui lòng chờ trong giây lát</small></div>
+            <div id="prediction-loading" class="request-loading hidden" role="status" aria-live="polite"><div class="loading-emblem"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M9 43a23 23 0 1 1 46 0" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m15 32 5 1m2-12 4 3m8-9v5m11 0-2 5m9 7-5 1" stroke="#62cbd2" stroke-width="2.5" stroke-linecap="round"/><path d="m32 39 12-16" stroke="#e4a94f" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="39" r="5" fill="#fff" stroke="currentColor" stroke-width="2.5"/><path d="M17 51h30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="scan-ring"></span></div><strong>Đang phân tích thông tin xe</strong><p>Hệ thống đang đối chiếu các đặc điểm xe với dữ liệu thị trường để ước tính mức giá tham khảo.</p><div class="loading-track"><span></span></div><small>Vui lòng chờ trong giây lát</small></div>
             <div id="prediction-result" class="hidden">
                 <div class="result-price">
                     <span>Giá dự đoán</span>
@@ -1422,27 +1518,27 @@ body:after{
     <div id="stats-content" class="hidden">
         <div class="kpi-grid">
             <div class="kpi">
-                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M3 14 5 8.5A2 2 0 0 1 7 7h10a2 2 0 0 1 2 1.5L21 14v4h-2v-2H5v2H3z"/></svg></div>
+                <div class="kpi-icon"><svg viewBox="0 0 32 32"><path d="M4 20 7 12q1.3-3 4.5-3h10q3.1 0 4.5 3l2 8v5h-3v-3H7v3H4z"/><path d="m9 9 2-4h10l3 4M8 17h16"/><circle cx="10" cy="21" r="1.4" fill="currentColor" stroke="none"/><circle cx="22" cy="21" r="1.4" fill="currentColor" stroke="none"/></svg></div>
                 <div class="kpi-label">Số lượng xe</div>
                 <div class="kpi-value" id="kpi-count">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.7-1.7-1-3-1-1.7 0-2.8.8-2.8 2s1.1 1.8 2.8 2.2"/></svg></div>
+                <div class="kpi-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M20 11.5c-1.1-1.1-2.4-1.7-4.2-1.7-2.4 0-4 1.2-4 3s1.4 2.8 4.2 3.3 4.2 1.3 4.2 3.1-1.6 3.1-4.3 3.1c-1.9 0-3.6-.7-4.8-2"/><path d="M16 7v18"/></svg></div>
                 <div class="kpi-label">Giá trung bình</div>
                 <div class="kpi-value" id="kpi-average">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17m-14-4 4-4 3 2 5-7"/></svg></div>
+                <div class="kpi-icon"><svg viewBox="0 0 32 32"><path d="M5 26V6m0 20h23"/><path d="m9 21 6-6 4 3 8-10"/><path d="M22 8h5v5"/></svg></div>
                 <div class="kpi-label">Giá trung vị</div>
                 <div class="kpi-value" id="kpi-median">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></div>
+                <div class="kpi-icon"><svg viewBox="0 0 32 32"><path d="M16 5v21"/><path d="m8 18 8 8 8-8"/><path d="M7 5h18"/></svg></div>
                 <div class="kpi-label">Giá thấp nhất</div>
                 <div class="kpi-value" id="kpi-min">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 20V5m-6 6 6-6 6 6"/></svg></div>
+                <div class="kpi-icon"><svg viewBox="0 0 32 32"><path d="M16 27V6"/><path d="m8 14 8-8 8 8"/><path d="M7 27h18"/></svg></div>
                 <div class="kpi-label">Giá cao nhất</div>
                 <div class="kpi-value" id="kpi-max">--</div>
             </div>
@@ -1592,7 +1688,7 @@ function formatMoney(value){if(value===null||value===undefined||value==="")retur
 function parseMoneyInput(value){const d=String(value??"").replace(/[^0-9]/g,"");return d?Number(d):NaN}
 function formatMoneyInput(value){const n=parseMoneyInput(value);return Number.isFinite(n)&&n>0?n.toLocaleString("vi-VN"):""}
 
-function formatCompact(value){if(value===null||value===undefined||value==="")return "--";const n=Number(value);if(!Number.isFinite(n)||n<0)return "--";if(n>=1e9)return(n/1e9).toFixed(2)+" tỷ";if(n>=1e6)return(n/1e6).toFixed(0)+" triệu";return n.toLocaleString("vi-VN")}
+function formatCompact(value){if(value===null||value===undefined||value==="")return "--";const n=Number(value);if(!Number.isFinite(n)||n<0)return "--";if(n>=1e9)return(n/1e9).toLocaleString("vi-VN",{maximumFractionDigits:2})+" tỷ";if(n>=1e6)return(n/1e6).toLocaleString("vi-VN",{maximumFractionDigits:1})+" triệu";return n.toLocaleString("vi-VN")}
 
 function formatNumber(value){if(value===null||value===undefined||value==="")return "--";const n=Number(value);return Number.isFinite(n)&&n>=0?n.toLocaleString("vi-VN"):"--"}
 
