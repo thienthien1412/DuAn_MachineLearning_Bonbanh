@@ -1,0 +1,42 @@
+{
+ "ten_mo_hinh": "XGBoost (tối ưu)",
+ "bien_muc_tieu": "gia_ban",
+ "don_vi_gia": "VND",
+ "dac_trung_dau_vao": [
+  "khu_vuc",
+  "so_km_da_di",
+  "xuat_xu",
+  "kieu_dang",
+  "hop_so",
+  "mau_ngoai_that",
+  "mau_noi_that",
+  "so_cho_ngoi",
+  "so_cua",
+  "dan_dong",
+  "hang_xe",
+  "dong_xe",
+  "nhien_lieu",
+  "dung_tich_dong_co",
+  "tuoi_xe"
+ ],
+ "min_frequency": 1,
+ "chi_so_test": {
+  "MAE_trieu": 82.26813224835034,
+  "RMSE_trieu": 339.29455571302867,
+  "R2": 0.9463726305648669,
+  "MAPE_pct": 8.054446127135288
+ },
+ "ti_le_gia_thuc_tren_du_doan": {
+  "p10": 0.8969055319750826,
+  "p90": 1.1254800683381447
+ },
+ "moi_truong": {
+  "python": "3.11.5",
+  "pandas": "2.2.3",
+  "numpy": "1.26.4",
+  "scikit-learn": "1.5.2",
+  "scipy": "1.10.1",
+  "xgboost": "2.1.1",
+  "joblib": "1.4.2"
+ }
+}
