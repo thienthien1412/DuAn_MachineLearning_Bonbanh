@@ -365,8 +365,13 @@ def thong_ke_thi_truong():
     )
 
     return jsonify({
-        "loai": loai,
-        "gia_tri": gia_tri,
+        "bo_loc": {
+            "hang": hang,
+            "tuoi_tu": tuoi_tu,
+            "tuoi_den": tuoi_den,
+            "gia_tu": gia_tu,
+            "gia_den": gia_den
+        },
         "tong_quan": tong_quan,
         "phan_bo_gia": tao_bieu_do_phan_bo(du_lieu_loc),
         "top_hang_xe": bieu_do_hang,
