@@ -252,91 +252,138 @@ def tao_bang_theo_nhom(du_lieu, cot_nhom):
 
 @app.route("/api/statistics/options", methods=["GET"])
 def lua_chon_thong_ke():
-    hang_xe = sorted(
-        DU_LIEU_XE["hang_xe"]
-        .dropna()
-        .astype(str)
-        .unique()
-        .tolist()
+    cot_loc = ["hang_xe", "khu_vuc", "kieu_dang", "hop_so", "xuat_xu"]
+    lua_chon = {}
+
+    for cot in cot_loc:
+        if cot in DU_LIEU_XE.columns:
+            lua_chon[cot] = sorted(
+                DU_LIEU_XE[cot].dropna().astype(str).unique().tolist()
+            )
+        else:
+            lua_chon[cot] = []
+
+    lua_chon["tuoi_xe"] = sorted(
+        DU_LIEU_XE["tuoi_xe"].dropna().astype(int).unique().tolist()
     )
 
-    tuoi_xe = sorted(
-        DU_LIEU_XE["tuoi_xe"]
-        .dropna()
-        .astype(int)
-        .unique()
-        .tolist()
-    )
-
-    return jsonify({
-        "hang_xe": hang_xe,
-        "tuoi_xe": tuoi_xe
-    })
+    return jsonify(lua_chon)
 
 
 # --------------------------------------------------
-# API THONG KE THI TRUONG
+# API THONG KE DASHBOARD
 # --------------------------------------------------
 
 @app.route("/api/statistics", methods=["GET"])
 def thong_ke_thi_truong():
-    loai = request.args.get("type", "all").strip()
-    gia_tri = request.args.get("value", "").strip()
+    cot_loc = ["hang_xe", "tuoi_xe", "khu_vuc", "kieu_dang", "hop_so", "xuat_xu"]
+    du_lieu_loc = DU_LIEU_XE.copy()
+    dieu_kien = []
 
-    if loai not in ["all", "make", "age"]:
-        return jsonify({"loi": "Phạm vi thống kê không hợp lệ"}), 400
+    for cot in cot_loc:
+        cac_gia_tri = request.args.getlist(cot)
 
-    if loai != "all" and not gia_tri:
-        return jsonify({"loi": "Vui lòng chọn giá trị thống kê"}), 400
+        if not cac_gia_tri:
+            continue
 
-    # KPI và biểu đồ luôn sử dụng toàn bộ dữ liệu thị trường.
-    tong_quan = tinh_chi_so(DU_LIEU_XE)
+        if cot == "tuoi_xe":
+            try:
+                cac_gia_tri = [int(x) for x in cac_gia_tri]
+            except ValueError:
+                return jsonify({"loi": "Giá trị tuổi xe không hợp lệ"}), 400
 
-    top_hang = (
-        DU_LIEU_XE.groupby("hang_xe")["gia_ban"]
+            du_lieu_loc = du_lieu_loc[du_lieu_loc[cot].isin(cac_gia_tri)]
+        else:
+            du_lieu_loc = du_lieu_loc[
+                du_lieu_loc[cot].astype(str).isin(cac_gia_tri)
+            ]
+
+        dieu_kien.append(cot)
+
+    tong_quan = tinh_chi_so(du_lieu_loc)
+
+    bang_hang = tao_bang_theo_nhom(du_lieu_loc, "hang_xe")
+    bang_hang.sort(key=lambda x: x["so_xe"], reverse=True)
+
+    bang_tuoi = tao_bang_theo_nhom(du_lieu_loc, "tuoi_xe")
+    bang_tuoi.sort(key=lambda x: x["gia_tri"])
+
+    cot_nhom = "kieu_dang" if request.args.getlist("hang_xe") else "hang_xe"
+    ten_nhom = "kiểu dáng" if cot_nhom == "kieu_dang" else "hãng xe"
+
+    nhom = (
+        du_lieu_loc.groupby(cot_nhom)["gia_ban"]
         .count()
         .sort_values(ascending=False)
         .head(10)
     )
 
-    bieu_do_hang = []
-    for ten_hang, so_luong in top_hang.items():
-        bieu_do_hang.append({
-            "hang_xe": str(ten_hang),
-            "so_xe": int(so_luong)
-        })
+    phan_tich_nhom = [
+        {"gia_tri": str(gia_tri), "so_xe": int(so_luong)}
+        for gia_tri, so_luong in nhom.items()
+    ]
 
-    # Bộ lọc chỉ tác động đến dữ liệu của hai bảng thống kê.
-    du_lieu_bang = DU_LIEU_XE.copy()
+    phan_bo = tao_bieu_do_phan_bo(du_lieu_loc)
+    insights = []
+    tong_so = len(du_lieu_loc)
 
-    if loai == "make":
-        du_lieu_bang = du_lieu_bang[
-            du_lieu_bang["hang_xe"].astype(str).str.casefold()
-            == gia_tri.casefold()
-        ]
+    if tong_so:
+        ti_le = tong_so / len(DU_LIEU_XE) * 100 if len(DU_LIEU_XE) else 0
+        insights.append(
+            f"Có {tong_so:,} tin đăng phù hợp, chiếm {ti_le:.1f}% tổng số tin trong tập dữ liệu."
+        )
 
-    elif loai == "age":
-        try:
-            tuoi = int(gia_tri)
-        except ValueError:
-            return jsonify({"loi": "Tuổi xe không hợp lệ"}), 400
+        if bang_hang:
+            hang_dau = bang_hang[0]
+            insights.append(
+                f"{hang_dau['gia_tri']} là hãng có nhiều tin đăng nhất "
+                f"({hang_dau['so_xe']:,} tin, chiếm {hang_dau['so_xe']/tong_so*100:.1f}% trong phạm vi lọc)."
+            )
 
-        du_lieu_bang = du_lieu_bang[
-            du_lieu_bang["tuoi_xe"] == tuoi
-        ]
+        if phan_bo:
+            khoang = max(phan_bo, key=lambda x: x["so_xe"])
+            insights.append(
+                f"Khoảng giá có nhiều tin nhất là {khoang['tu']/1e9:.2f}–{khoang['den']/1e9:.2f} tỷ đồng "
+                f"với {khoang['so_xe']:,} tin đăng."
+            )
 
-    bang_hang = tao_bang_theo_nhom(du_lieu_bang, "hang_xe")
-    bang_hang.sort(key=lambda x: x["so_xe"], reverse=True)
+        nhom_tuoi = [x for x in bang_tuoi if x["so_xe"] >= 10]
+        if nhom_tuoi:
+            tuoi_cao = max(nhom_tuoi, key=lambda x: x["gia_trung_vi"])
+            insights.append(
+                f"Nhóm xe {tuoi_cao['gia_tri']} năm có giá trung vị cao nhất "
+                f"trong các nhóm có ít nhất 10 tin ({tuoi_cao['gia_trung_vi']/1e9:.2f} tỷ đồng)."
+            )
 
-    bang_tuoi = tao_bang_theo_nhom(du_lieu_bang, "tuoi_xe")
-    bang_tuoi.sort(key=lambda x: x["gia_tri"])
+        if tong_quan and tong_quan["gia_trung_vi"] > 0:
+            chenhlech = (
+                tong_quan["gia_trung_binh"] / tong_quan["gia_trung_vi"] - 1
+            ) * 100
+
+            if abs(chenhlech) >= 10:
+                huong = "cao hơn" if chenhlech > 0 else "thấp hơn"
+                insights.append(
+                    f"Giá trung bình {huong} giá trung vị {abs(chenhlech):.1f}%, "
+                    "cho thấy một số tin có mức giá xa trung tâm có thể ảnh hưởng đến số trung bình."
+                )
+            else:
+                insights.append(
+                    "Giá trung bình và trung vị tương đối gần nhau trong phạm vi đang chọn."
+                )
 
     return jsonify({
         "tong_quan": tong_quan,
-        "phan_bo_gia": tao_bieu_do_phan_bo(DU_LIEU_XE),
-        "top_hang_xe": bieu_do_hang,
+        "phan_bo_gia": phan_bo,
+        "phan_tich_nhom": phan_tich_nhom,
+        "ten_nhom": ten_nhom,
         "bang_theo_hang": bang_hang,
-        "bang_theo_tuoi": bang_tuoi
+        "bang_theo_tuoi": bang_tuoi,
+        "insights": insights,
+        "mo_ta_pham_vi": (
+            "Toàn bộ thị trường"
+            if not dieu_kien
+            else "Đang lọc theo: " + ", ".join(dieu_kien)
+        )
     })
 
 
