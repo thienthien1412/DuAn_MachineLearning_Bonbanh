@@ -934,6 +934,31 @@ th{background:#eaf8fa;color:#356477;position:relative}td{color:#315a6a}tbody tr:
 .column-filter,.column-sort{border:0;background:transparent;color:#5b8998;margin-left:5px;padding:3px 4px;border-radius:4px;font-size:12px;cursor:pointer}.column-filter.is-filtered,.column-sort.is-sorted{background:#d9f4f6;color:#078eaa}.column-filter-menu{position:absolute;z-index:35;top:100%;left:0;min-width:230px;max-width:280px;padding:12px;background:#fff;border:1px solid #cde7ec;border-radius:9px;box-shadow:0 12px 28px rgba(25,90,110,.17);white-space:normal;color:#315d6d}.column-filter-menu strong{display:block;font-size:11px;margin-bottom:9px}.column-filter-menu>input,.column-filter-menu>select{width:100%;height:34px;margin:4px 0;padding:0 8px;border:1px solid #d7e9ed;border-radius:6px;font:inherit;font-size:11px}.column-values{max-height:190px;overflow:auto;margin:5px 0}.column-value{display:flex;gap:7px;align-items:center;padding:6px 3px;font-size:11px;cursor:pointer}.column-value input{accent-color:#08a6b5}.column-menu-actions{display:flex;justify-content:space-between;gap:8px;margin-top:9px;padding-top:9px;border-top:1px solid #e4f0f2}.column-menu-actions button{border:0;background:#edf8fa;color:#287084;padding:7px 10px;border-radius:6px;font-size:11px;cursor:pointer}.column-menu-actions button.apply{background:#08a6b5;color:#fff}
 @media(max-width:800px){.dashboard-filter-grid,.insight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.dashboard-filter-grid,.insight-grid{grid-template-columns:1fr}.insight-heading{align-items:flex-start;flex-direction:column}.column-filter-menu{left:auto;right:0}}
 
+
+/* RESTORE AUTOMOTIVE PHOTOGRAPHY WHILE KEEPING THE LIGHT THEME */
+.hero{
+ background-image:linear-gradient(90deg,rgba(225,248,250,.97) 0%,rgba(225,246,250,.88) 43%,rgba(225,246,250,.22) 100%),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90')!important;
+ background-size:cover!important;background-position:center 58%!important;
+}
+.hero h1{color:#16445b!important}.hero p{color:#416d7b!important}.hero .eyebrow{color:#087eaa!important}
+.page-heading{
+ background:transparent!important;position:relative;isolation:isolate;overflow:hidden;
+}
+.page-heading:after{
+ display:block!important;opacity:1!important;z-index:-1!important;
+ background-image:linear-gradient(90deg,rgba(224,247,249,.97) 0%,rgba(225,244,250,.88) 52%,rgba(225,244,250,.25) 100%),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=90')!important;
+ background-size:cover!important;background-position:center 55%!important;
+}
+#page-stats .page-heading:after{
+ background-image:linear-gradient(90deg,rgba(224,247,249,.97) 0%,rgba(225,244,250,.88) 52%,rgba(225,244,250,.25) 100%),url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1800&q=90')!important;
+ background-size:cover!important;background-position:center 58%!important;
+}
+.page-heading h1{color:#16445b!important}.page-heading .subtitle{color:#426b7a!important}.page-heading .eyebrow{color:#087eaa!important}
+@media(max-width:700px){
+ .hero{background-position:62% center!important}
+ .page-heading:after,#page-stats .page-heading:after{background-position:60% center!important}
+}
+
 </style>
 </head>
 
