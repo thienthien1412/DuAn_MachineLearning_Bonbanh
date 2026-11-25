@@ -779,7 +779,7 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
         </section>
 
         <section class="result-panel">
-            <div class="card-title"><span class="symbol">▥</span> Kết quả dự đoán</div>
+            <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="M7 16v-4m5 4V8m5 8V4"/></svg></span> Kết quả dự đoán</div>
             <div id="prediction-empty" class="result-empty waiting-state waiting-prediction">
                 <div class="waiting-visual car-visual" aria-hidden="true"><svg viewBox="0 0 240 100"><path d="M18 67 27 48q4-9 15-11l25-4 22-23q5-5 14-5h48q15 0 25 12l18 20 21 7q10 3 10 14v15h-20a22 22 0 0 0-43 0H80a22 22 0 0 0-43 0H18z" fill="currentColor"/><path d="m77 32 19-20q3-3 9-3h20v23zm57-23h17q10 0 17 9l13 14h-47z" fill="#d9f0f1"/><path d="M21 57h194M104 37v27m42-27v27" fill="none" stroke="#d9f0f1" stroke-width="2"/><circle cx="58" cy="70" r="15" fill="#123b52" stroke="#fff" stroke-width="5"/><circle cx="179" cy="70" r="15" fill="#123b52" stroke="#fff" stroke-width="5"/><circle cx="58" cy="70" r="5" fill="#73c4ca"/><circle cx="179" cy="70" r="5" fill="#73c4ca"/></svg></div><span class="waiting-kicker">ĐỊNH GIÁ TỪ DỮ LIỆU THỊ TRƯỜNG</span><strong>Nhận ước tính giá cho chiếc xe của bạn</strong><p>Nhập thông tin xe ở bên trái. Hệ thống sẽ phân tích các đặc điểm và hiển thị mức giá tham khảo tại đây.</p>
                 <div class="waiting-steps">
@@ -1129,7 +1129,37 @@ function makeField(key,prefix,required) {
     input.dataset.key = key;
     if(required) input.required = true;
     if(!required && input.tagName === "SELECT") input.value = "";
+    if(input.tagName==="SELECT"&&(key==="hang_xe"||key==="dong_xe")){
+        const search=document.createElement("input");
+        search.type="search";
+        search.className="field-search";
+        search.placeholder=key==="hang_xe"?"Tìm hãng xe...":"Tìm dòng xe...";
+        search.setAttribute("aria-label",search.placeholder);
+        search.addEventListener("input",()=>{
+            const query=search.value.trim().toLocaleLowerCase("vi");
+            Array.from(input.options).forEach((option,index)=>{
+                option.hidden=index!==0&&!option.textContent.toLocaleLowerCase("vi").includes(query);
+            });
+        });
+        input.addEventListener("change",()=>{
+            search.value="";
+            Array.from(input.options).forEach(option=>option.hidden=false);
+        });
+        wrap.appendChild(search);
+    }
     wrap.appendChild(input);
+    const hints={
+        khu_vuc:"Chọn khu vực nơi xe đang được rao bán.",
+        so_km_da_di:"Nhập số kilomet hiển thị trên đồng hồ xe.",
+        tuoi_xe:"Nhập số năm sử dụng của xe.",
+        dung_tich_dong_co:"Ví dụ: 1.5 hoặc 2.0 lít."
+    };
+    if(hints[key]){
+        const hint=document.createElement("small");
+        hint.className="field-hint";
+        hint.textContent=hints[key];
+        wrap.appendChild(hint);
+    }
     return wrap;
 }
 
