@@ -1036,40 +1036,25 @@ tbody tr:hover{background:#f0f9fd}
 
     <section class="card">
         <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="18" r="2"/></svg></span> Điều kiện thống kê</div>
-        <div class="stats-filter-grid">
+        <div class="stats-filter">
             <div class="field">
-                <label for="stats-make">Tìm hãng xe</label>
-                <input id="stats-make" type="search" list="stats-make-options" placeholder="Ví dụ: Toyota, Honda..." autocomplete="off">
-                <datalist id="stats-make-options"></datalist>
-            </div>
-            <div class="field">
-                <label for="stats-age">Tuổi xe</label>
-                <select id="stats-age">
-                    <option value="">Tất cả độ tuổi</option>
-                    <option value="0-3">0 – 3 năm</option>
-                    <option value="4-7">4 – 7 năm</option>
-                    <option value="8-10">8 – 10 năm</option>
-                    <option value="11-">Trên 10 năm</option>
+                <label>Phạm vi thống kê</label>
+                <select id="stats-type">
+                    <option value="all">Toàn bộ thị trường</option>
+                    <option value="make">Theo hãng xe</option>
+                    <option value="age">Theo tuổi xe</option>
                 </select>
             </div>
-            <div class="field">
-                <label for="stats-price">Khoảng giá rao bán</label>
-                <select id="stats-price">
-                    <option value="">Tất cả mức giá</option>
-                    <option value="0-300000000">Dưới 300 triệu</option>
-                    <option value="300000000-500000000">300 – 500 triệu</option>
-                    <option value="500000000-1000000000">500 triệu – 1 tỷ</option>
-                    <option value="1000000000-2000000000">1 – 2 tỷ</option>
-                    <option value="2000000000-">Trên 2 tỷ</option>
-                </select>
+            <div class="field hidden" id="stats-value-wrap">
+                <label id="stats-value-label">Lựa chọn</label>
+                <select id="stats-value"></select>
             </div>
-            <div class="stats-filter-actions">
-                <button class="button" id="stats-button">Áp dụng bộ lọc</button>
-                <button class="button secondary" id="stats-reset" type="button">Xóa bộ lọc</button>
-            </div>
+            <button class="button" id="stats-button">Xem thống kê →</button>
         </div>
         <div class="status" id="stats-status"></div>
     </section>
+
+        </section>
 
     <div id="stats-content" class="hidden">
         <div class="kpi-grid">
@@ -1533,11 +1518,31 @@ $("check-form").addEventListener("submit",async e=>{
 
 async function loadStatsOptions() {
     const data=await api("/api/statistics/options");
-    const list=$("stats-make-options");
-    list.innerHTML="";
-    (data.hang_xe || []).forEach(item=>{
+
+    window.statsOptions=data;
+
+    $("stats-type").addEventListener("change",()=>{
+        const type=$("stats-type").value;
+        $("stats-value-wrap").classList.toggle("hidden",type==="all");
+        $("stats-value-label").textContent=type==="make"?"Hãng xe":"Tuổi xe";
+        fillStatsOptions(type,data);
+    });
+
+    fillStatsOptions("all",data);
+}
+
+function fillStatsOptions(type,data) {
+    const select=$("stats-value");
+    select.innerHTML="";
+
+    const values=type==="make"
+        ? (data.hang_xe || [])
+        : (data.tuoi_xe || []);
+
+    values.forEach(item=>{
         const value=typeof item==="object" ? (item.value ?? item.label ?? item.name) : item;
-        list.appendChild(new Option(value,value));
+        const label=typeof item==="object" ? (item.label ?? item.name ?? item.value) : item;
+        select.add(new Option(label,value));
     });
 }
 
@@ -1785,72 +1790,47 @@ function renderStats(data) {
     fillTable("age-table",getRows(data,"bang_theo_tuoi","theo_tuoi"),"Tuổi xe");
 }
 
-function getStatsFilterParams() {
-    const params=new URLSearchParams();
-    const make=$("stats-make").value.trim();
-    const age=$("stats-age").value;
-    const price=$("stats-price").value;
-
-    if(make) params.set("make",make);
-    if(age) {
-        const [min,max]=age.split("-");
-        if(min) params.set("age_min",min);
-        if(max) params.set("age_max",max);
-    }
-    if(price) {
-        const [min,max]=price.split("-");
-        if(min) params.set("price_min",min);
-        if(max) params.set("price_max",max);
-    }
-    return params;
-}
-
 async function loadStatistics() {
+    const type=$("stats-type").value;
+    const value=$("stats-value").value;
+
+    if(type!=="all" && value==="") {
+        $("stats-status").textContent="Vui lòng chọn giá trị thống kê.";
+        $("stats-status").className="status error";
+        return;
+    }
+
     $("stats-button").disabled=true;
-    $("stats-button").textContent="Đang lọc...";
-    $("stats-status").textContent="Đang tổng hợp dữ liệu theo điều kiện đã chọn...";
+    $("stats-button").textContent="Đang tải...";
+    $("stats-status").textContent="Đang cập nhật hai bảng thống kê...";
     $("stats-content").classList.add("hidden");
     $("stats-empty").classList.remove("hidden");
 
     try {
-        const params=getStatsFilterParams();
-        const query=params.toString();
-        const data=await api("/api/statistics"+(query?"?"+query:""));
+        let url="/api/statistics?type="+encodeURIComponent(type);
+        if(type!=="all") url+="&value="+encodeURIComponent(value);
 
+        const data=await api(url);
         renderStats(data);
 
         $("stats-content").classList.remove("hidden");
         $("stats-empty").classList.add("hidden");
-        const conditions=[];
-        if(params.has("make")) conditions.push("hãng: "+params.get("make"));
-        if(params.has("age_min")||params.has("age_max")) conditions.push("tuổi xe: "+$("stats-age").selectedOptions[0].textContent);
-        if(params.has("price_min")||params.has("price_max")) conditions.push("giá: "+$("stats-price").selectedOptions[0].textContent);
-        $("stats-status").textContent=conditions.length
-            ? "Đang hiển thị kết quả theo "+conditions.join(" · ")+"."
-            : "Đang hiển thị toàn bộ dữ liệu thị trường.";
+        $("stats-status").textContent=type==="all"
+            ? "Đang hiển thị đầy đủ dữ liệu trong hai bảng."
+            : "Đã lọc bảng "+(type==="make"?"theo hãng xe":"theo tuổi xe")+". KPI và biểu đồ vẫn hiển thị toàn bộ thị trường.";
         $("stats-status").className="status";
     } catch(error) {
-        $("stats-status").textContent="Không tìm thấy dữ liệu phù hợp hoặc có lỗi khi tải: "+error.message;
+        $("stats-status").textContent="Không tải được dữ liệu thống kê: "+error.message;
         $("stats-status").className="status error";
-        $("stats-empty").innerHTML='<div class="stats-error-mark">!</div><strong>Không có dữ liệu phù hợp</strong><p>Thử thay đổi hoặc xóa bớt điều kiện lọc.</p>';
+        $("stats-empty").innerHTML='<div class="stats-error-mark">!</div><strong>Chưa thể tải dữ liệu</strong><p></p>';
+        $("stats-empty").querySelector("p").textContent=error.message;
     } finally {
         $("stats-button").disabled=false;
-        $("stats-button").textContent="Áp dụng bộ lọc";
+        $("stats-button").textContent="Xem thống kê →";
     }
 }
 
 $("stats-button").addEventListener("click",loadStatistics);
-$("stats-reset").addEventListener("click",()=>{
-    $("stats-make").value="";
-    $("stats-age").value="";
-    $("stats-price").value="";
-    loadStatistics();
-});
-$("stats-make").addEventListener("keydown",event=>{
-    if(event.key==="Enter"){event.preventDefault();loadStatistics();}
-});
-$("stats-age").addEventListener("change",loadStatistics);
-$("stats-price").addEventListener("change",loadStatistics);
 
 async function initialize() {
     showPage();
