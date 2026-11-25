@@ -337,9 +337,9 @@ def thong_ke_thi_truong():
 
     bieu_do_hang = []
 
-    for hang, so_luong in top_hang.items():
+    for ten_hang, so_luong in top_hang.items():
         bieu_do_hang.append({
-            "hang_xe": str(hang),
+            "hang_xe": str(ten_hang),
             "so_xe": int(so_luong)
         })
 
