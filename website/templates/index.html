@@ -580,7 +580,7 @@ body{background:var(--bg);color:var(--text)}
 .navbar{height:82px;background:#101f32;border:0;box-shadow:0 5px 24px rgba(8,20,34,.18)}
 .brand{color:#fff!important;font-size:24px;font-weight:800;letter-spacing:-1px}
 .brand-icon{background:#e2a34b;color:#101f32;border-radius:11px;width:43px;height:43px}
-.brand-icon:before{content:"DG";font-size:15px;font-weight:900;color:#101f32}
+.brand-icon:before{content:none}
 .nav-links a{color:#d3dce4;font-weight:600}
 .nav-links a:hover,.nav-links a.active{background:rgba(226,163,75,.16);color:#f0bd70}
 .container{max-width:1360px;padding-top:36px}
@@ -710,6 +710,26 @@ body{background:var(--bg);color:var(--text)}
     .range-endpoints strong{font-size:11px}
 }
 
+
+/* FINAL AQUA DESIGN SYSTEM */
+:root{--navy:#123b52;--blue:#087e8b;--blue2:#159ba5;--pale:#e8f5f6;--bg:#f3f8f9;--text:#193746;--muted:#66818a;--border:#d9e8ea;--accent:#42b7c5;--green:#17845d;--red:#c34b55;--shadow:0 12px 32px rgba(18,59,82,.075)}
+body{background:var(--bg);color:var(--text)}.navbar{background:var(--navy);height:78px;box-shadow:0 5px 22px rgba(18,59,82,.15)}.brand{color:#fff!important;font-size:24px}.brand-icon{display:grid;place-items:center;background:#e8f5f6;color:#087e8b;width:48px;height:42px;border-radius:10px}.brand-icon:before{content:none!important}.brand-car{width:39px;height:24px}
+.nav-links a{color:#d8e9eb}.nav-links a:hover,.nav-links a.active{background:rgba(66,183,197,.18);color:#8ce0e4}
+.hero{background-image:linear-gradient(90deg,rgba(12,43,59,.96),rgba(12,55,70,.84) 46%,rgba(12,55,70,.18)),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90');border-radius:18px}.hero:before{background:var(--accent)}.hero .eyebrow,.page-heading .eyebrow{color:#8fe0e4}.hero h1,.page-heading h1{color:#fff}.hero p,.page-heading .subtitle{color:#e0eff0}.page-heading{background:var(--navy)}.page-heading:after{background-image:linear-gradient(90deg,rgba(12,43,59,.96),rgba(12,55,70,.78) 55%,rgba(12,55,70,.24)),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=90')}#page-stats .page-heading:after{background-image:linear-gradient(90deg,rgba(12,43,59,.96),rgba(12,55,70,.78) 55%,rgba(12,55,70,.24)),url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1800&q=90')}
+.button{background:var(--blue);color:#fff;border-radius:9px}.button:hover{background:#066c77;color:#fff}.button.secondary{background:var(--pale);color:var(--navy)}.card,.result-panel,.shortcut,.kpi{border-color:var(--border);border-radius:14px;box-shadow:var(--shadow)}.card{background:#fff}
+.card-title{color:var(--navy);font-size:15px}.card-title .symbol{width:34px;height:34px;border-radius:9px;background:var(--pale);color:var(--blue);display:inline-grid;place-items:center}.card-title .symbol:before{content:none!important}.card-title .symbol svg,.kpi-icon svg,.shortcut-icon svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.section-label{color:var(--blue);border-color:var(--border)}.field label{color:#29495a}.field input,.field select{border-color:#d5e5e7;border-radius:8px}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(8,126,139,.11)}.field-hint{display:block;margin-top:6px;color:#789099;font-size:10px;line-height:1.5}
+.result-panel{background:linear-gradient(145deg,#f8fcfc,#eaf5f6);border-color:#d6e9eb}.result-price{background:linear-gradient(125deg,#123b52,#087e8b)}.result-price span{color:#d8eff0}.result-price strong{color:#fff}.metric{border-color:#dcebed;border-radius:10px}.metric strong{color:var(--navy);overflow-wrap:anywhere}
+.shortcut{border-left:4px solid var(--accent)}.shortcut:hover{border-color:var(--blue)}.shortcut h3{color:var(--navy)}.shortcut-icon{background:var(--pale);color:var(--blue);display:grid;place-items:center}.shortcut-icon:before{content:none!important}.shortcut-icon svg{width:23px;height:23px}
+.assessment.good{background:#e8f6ef;color:#13734f}.assessment.warning{background:#fff4e7;color:#986016}.range-section{border-color:var(--border)}.range-badge.inside{background:#e8f6ef;color:#13734f}.range-badge.outside{background:#fff4e7;color:#986016}.range-marker{background:#087e8b}.range-price-label{background:#123b52}.range-price-label:after{border-top-color:#123b52}.range-explanation{background:#edf7f7;color:#45636d}
+.kpi{border-top:3px solid var(--accent)}.kpi-icon{background:var(--pale);color:var(--blue);display:grid;place-items:center}.kpi-icon:before{content:none!important}.kpi-label{color:#66818a}.kpi-value{color:var(--navy)}.chart-description{margin:-12px 0 16px;color:#789099;font-size:10px;line-height:1.6}.stats-source{margin:-5px 0 17px;padding:12px 15px;border:1px solid #d6e9eb;border-radius:9px;background:#eaf5f6;color:#4d6e77;font-size:11px;line-height:1.65}
+.stats-loading-mark{width:72px;height:48px;display:flex;align-items:flex-end;justify-content:center;gap:7px;margin-bottom:12px}.stats-loading-mark span{width:12px;border-radius:5px 5px 2px 2px;background:var(--accent)}.stats-loading-mark span:nth-child(1){height:22px}.stats-loading-mark span:nth-child(2){height:36px;background:var(--blue)}.stats-loading-mark span:nth-child(3){height:28px}.stats-error-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff0f0;color:#b83e49;font-size:23px;font-weight:800;margin-bottom:12px}
+th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#f1f9f9}.status{color:var(--green);line-height:1.6}.status.error{color:var(--red)}.footer{background:var(--navy);color:#b9d0d4;border:0}
+.waiting-state{min-height:350px}.car-visual{width:240px;height:120px;display:grid;place-items:center;background:radial-gradient(ellipse,rgba(66,183,197,.18),rgba(66,183,197,0) 72%);border-radius:50%}.car-visual svg{width:230px;height:105px;color:#087e8b;filter:drop-shadow(0 8px 9px rgba(18,59,82,.13))}.waiting-kicker{color:var(--blue)}.waiting-state>strong{color:var(--navy)}.waiting-state>p{max-width:360px;color:#66818a}.waiting-steps>div{border-color:#dcebed}.waiting-steps b{color:var(--blue)}.waiting-steps span{color:#58747e}
+.comparison-visual{height:135px;background:radial-gradient(ellipse,rgba(66,183,197,.16),rgba(66,183,197,0) 72%)}.comparison-visual svg{width:230px;height:130px}.chart-axis{fill:none;stroke:#789aa2;stroke-width:2}.chart-gridline{fill:none;stroke:#d3e6e8;stroke-dasharray:4 5}.chart-bar{fill:#b9e3e5}.bar-two{fill:#70c6cd}.bar-three{fill:#087e8b}.chart-trend{fill:none;stroke:#123b52;stroke-width:3;stroke-linecap:round}.chart-point{fill:#42b7c5;stroke:#fff;stroke-width:3}.waiting-hint{border-color:#dcebed;color:#58747e}
+@media(max-width:700px){.navbar{height:auto;min-height:70px;padding:11px 4%;gap:8px}.brand{font-size:20px}.brand-icon{width:43px;height:38px}.brand-car{width:35px}.nav-links{width:100%;overflow-x:auto}.nav-links a{font-size:10px;padding:9px 10px;white-space:nowrap}.container{padding:22px 4% 42px}.hero{padding:32px 24px;min-height:280px}.page-heading{padding:28px 23px;min-height:190px}.page-heading h1{font-size:28px}.card{padding:19px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.waiting-state{min-height:320px;padding:22px 10px}}
+@media(max-width:420px){.nav-links a{font-size:9px;padding:8px 7px}.form-grid{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-value{font-size:18px}}
+
 </style>
 </head>
 
@@ -717,7 +737,7 @@ body{background:var(--bg);color:var(--text)}
 
 <header class="navbar">
     <a href="/" class="brand" style="text-decoration:none">
-        <span class="brand-icon">🚘</span>
+        <span class="brand-icon" aria-hidden="true"><svg class="brand-car" viewBox="0 0 240 100"><path d="M18 67 27 48q4-9 15-11l25-4 22-23q5-5 14-5h48q15 0 25 12l18 20 21 7q10 3 10 14v15h-20a22 22 0 0 0-43 0H80a22 22 0 0 0-43 0H18z" fill="currentColor"/><path d="m77 32 19-20q3-3 9-3h20v23zm57-23h17q10 0 17 9l13 14h-47z" fill="#bfe8eb"/><path d="M21 57h194M104 37v27m42-27v27" fill="none" stroke="#d8f2f3" stroke-width="2"/><circle cx="58" cy="70" r="15" fill="#123b52" stroke="#e8f5f6" stroke-width="5"/><circle cx="179" cy="70" r="15" fill="#123b52" stroke="#e8f5f6" stroke-width="5"/><circle cx="58" cy="70" r="5" fill="#8bcbd0"/><circle cx="179" cy="70" r="5" fill="#8bcbd0"/></svg></span>
         Dudoangiaxecu
     </a>
     <nav class="nav-links">
@@ -740,12 +760,12 @@ body{background:var(--bg);color:var(--text)}
                 Bắt đầu định giá →
             </button>
         </div>
-        <div class="hero-art">📊</div>
+        <div class="hero-art" aria-hidden="true"></div>
     </div>
 
     <div class="two-columns">
         <section class="card">
-            <div class="card-title"><span class="symbol">🚗</span> Thông tin phương tiện</div>
+            <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M3 13.5 5 8.2a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8.2l2 5.3v4h-2v-2H5v2H3z"/><path d="m6 13.5 1.5-4h9l1.5 4M7 18h.01M17 18h.01"/></svg></span> Thông tin phương tiện</div>
             <form id="prediction-form">
                 <div class="section-label">THÔNG TIN CƠ BẢN</div>
                 <div class="form-grid" id="prediction-fields"></div>
@@ -761,16 +781,7 @@ body{background:var(--bg);color:var(--text)}
         <section class="result-panel">
             <div class="card-title"><span class="symbol">▥</span> Kết quả dự đoán</div>
             <div id="prediction-empty" class="result-empty waiting-state waiting-prediction">
-                <div class="waiting-visual car-visual">
-                    <div class="visual-orbit"></div>
-                    <div class="car-window"></div>
-                    <div class="car-body"></div>
-                    <div class="car-wheel wheel-left"></div>
-                    <div class="car-wheel wheel-right"></div>
-                </div>
-                <span class="waiting-kicker">ĐỊNH GIÁ THÔNG MINH</span>
-                <strong>Sẵn sàng định giá xe của bạn</strong>
-                <p>Điền thông tin phương tiện để nhận mức giá ước tính từ dữ liệu thị trường.</p>
+                <div class="waiting-visual car-visual" aria-hidden="true"><svg viewBox="0 0 240 100"><path d="M18 67 27 48q4-9 15-11l25-4 22-23q5-5 14-5h48q15 0 25 12l18 20 21 7q10 3 10 14v15h-20a22 22 0 0 0-43 0H80a22 22 0 0 0-43 0H18z" fill="currentColor"/><path d="m77 32 19-20q3-3 9-3h20v23zm57-23h17q10 0 17 9l13 14h-47z" fill="#d9f0f1"/><path d="M21 57h194M104 37v27m42-27v27" fill="none" stroke="#d9f0f1" stroke-width="2"/><circle cx="58" cy="70" r="15" fill="#123b52" stroke="#fff" stroke-width="5"/><circle cx="179" cy="70" r="15" fill="#123b52" stroke="#fff" stroke-width="5"/><circle cx="58" cy="70" r="5" fill="#73c4ca"/><circle cx="179" cy="70" r="5" fill="#73c4ca"/></svg></div><span class="waiting-kicker">ĐỊNH GIÁ TỪ DỮ LIỆU THỊ TRƯỜNG</span><strong>Nhận ước tính giá cho chiếc xe của bạn</strong><p>Nhập thông tin xe ở bên trái. Hệ thống sẽ phân tích các đặc điểm và hiển thị mức giá tham khảo tại đây.</p>
                 <div class="waiting-steps">
                     <div><b>01</b><span>Nhập thông tin xe</span></div>
                     <div><b>02</b><span>Phân tích dữ liệu</span></div>
@@ -801,7 +812,7 @@ body{background:var(--bg);color:var(--text)}
                 <p>Đối chiếu giá người bán đưa ra với mức giá ước tính từ mô hình.</p>
                 <span class="button" style="display:inline-block;margin-top:14px">Kiểm tra giá →</span>
             </div>
-            <div class="shortcut-icon">🛡️</div>
+            <div class="shortcut-icon"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6z"/><path d="m8 12 2.5 2.5L16 9"/></svg></div>
         </a>
         <a class="shortcut" href="/thong-ke">
             <div>
@@ -809,7 +820,7 @@ body{background:var(--bg);color:var(--text)}
                 <p>Khám phá mặt bằng giá và số lượng tin đăng theo từng nhóm xe.</p>
                 <span class="button" style="display:inline-block;margin-top:14px">Xem thống kê →</span>
             </div>
-            <div class="shortcut-icon">📊</div>
+            <div class="shortcut-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="M8 16v-4m5 4V8m5 8V4"/></svg></div>
         </a>
     </div>
 </section>
@@ -824,12 +835,12 @@ body{background:var(--bg);color:var(--text)}
 
     <div class="two-columns">
         <section class="card">
-            <div class="card-title"><span class="symbol">🚗</span> Thông tin phương tiện</div>
+            <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M3 13.5 5 8.2a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8.2l2 5.3v4h-2v-2H5v2H3z"/><path d="m6 13.5 1.5-4h9l1.5 4M7 18h.01M17 18h.01"/></svg></span> Thông tin phương tiện</div>
             <form id="check-form">
-                <div class="form-grid" id="check-fields"></div>
+                <div class="section-label">THÔNG TIN CƠ BẢN</div><div class="section-label">THÔNG TIN CƠ BẢN</div><div class="form-grid" id="check-fields"></div><div class="section-label">THÔNG SỐ BỔ SUNG</div><div class="form-grid" id="check-extra"></div><div class="section-label">THÔNG SỐ BỔ SUNG</div><div class="form-grid" id="check-extra"></div>
                 <div class="field" style="margin-top:20px;max-width:420px">
                     <label>Giá rao bán (VNĐ) <span class="required">*</span></label>
-                    <input id="asking-price" type="number" min="1" placeholder="Ví dụ: 450000000" required>
+                    <input id="asking-price" type="text" inputmode="numeric" autocomplete="off" placeholder="Ví dụ: 450.000.000" required><small class="field-hint">Nhập giá đang được người bán rao, đơn vị VNĐ.</small>
                 </div>
                 <div class="form-footer">
                     <button class="button" id="check-button" type="submit">Kiểm tra giá →</button>
@@ -839,19 +850,9 @@ body{background:var(--bg);color:var(--text)}
         </section>
 
         <section class="result-panel">
-            <div class="card-title"><span class="symbol">⚖️</span> Kết quả đối chiếu</div>
+            <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 16V5m0 0 3 3M7 5 4 8m13 8V9m0 0 3 3m-3-3-3 3"/></svg></span> Kết quả đối chiếu</div>
             <div id="check-empty" class="result-empty waiting-state waiting-check">
-                <div class="waiting-visual scale-visual">
-                    <div class="scale-line"></div>
-                    <div class="scale-pin"></div>
-                    <div class="scale-dot"></div>
-                    <div class="scale-label scale-low">GIÁ THẤP</div>
-                    <div class="scale-label scale-high">GIÁ CAO</div>
-                </div>
-                <span class="waiting-kicker">ĐỐI CHIẾU THỊ TRƯỜNG</span>
-                <strong>Chờ thông tin để kiểm tra giá</strong>
-                <p>Hệ thống sẽ so sánh giá rao bán với mức giá dự đoán và khoảng tham khảo.</p>
-                <div class="waiting-hint"><span class="hint-dot"></span> Kết quả sẽ hiển thị tại đây sau khi kiểm tra</div>
+                <div class="waiting-visual comparison-visual" aria-hidden="true"><svg viewBox="0 0 240 130"><path class="chart-axis" d="M25 12v96h190"/><path class="chart-gridline" d="M25 40h190M25 72h190"/><rect class="chart-bar" x="48" y="70" width="28" height="38" rx="5"/><rect class="chart-bar bar-two" x="96" y="48" width="28" height="60" rx="5"/><rect class="chart-bar bar-three" x="144" y="28" width="28" height="80" rx="5"/><path class="chart-trend" d="m43 63 55-23 49-15 48-12"/><circle class="chart-point" cx="195" cy="13" r="5"/></svg></div><span class="waiting-kicker">ĐỐI CHIẾU GIÁ THỊ TRƯỜNG</span><strong>Sẵn sàng kiểm tra giá rao bán</strong><p>Nhập thông tin xe và mức giá người bán đưa ra để xem mức giá đó thấp hơn, nằm trong hay cao hơn khoảng tham khảo.</p><div class="waiting-hint"><span class="hint-dot"></span> Kết quả chỉ xuất hiện sau khi gửi thông tin xe</div>
             </div>
             <div id="check-result" class="hidden">
                 <div id="assessment" class="assessment">Kết quả đánh giá</div>
@@ -909,7 +910,7 @@ body{background:var(--bg);color:var(--text)}
     </div>
 
     <section class="card">
-        <div class="card-title"><span class="symbol">⚙</span> Điều kiện thống kê</div>
+        <div class="card-title"><span class="symbol"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="18" r="2"/></svg></span> Điều kiện thống kê</div>
         <div class="stats-filter">
             <div class="field">
                 <label>Phạm vi thống kê</label>
@@ -928,30 +929,30 @@ body{background:var(--bg);color:var(--text)}
         <div class="status" id="stats-status"></div>
     </section>
 
-    <div id="stats-content" class="hidden">
+    <div id="stats-content" class="hidden"><p class="stats-source">Nguồn dữ liệu: Bonbanh.com · Phạm vi: các tin đăng đã thu thập trong đề tài. Số liệu mang tính tham khảo, không đại diện toàn bộ thị trường.</p>
         <div class="kpi-grid">
             <div class="kpi">
-                <div class="kpi-icon">🚘</div>
+                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M3 14 5 8.5A2 2 0 0 1 7 7h10a2 2 0 0 1 2 1.5L21 14v4h-2v-2H5v2H3z"/></svg></div>
                 <div class="kpi-label">Số lượng xe</div>
                 <div class="kpi-value" id="kpi-count">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon">💰</div>
+                <div class="kpi-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.7-1.7-1-3-1-1.7 0-2.8.8-2.8 2s1.1 1.8 2.8 2.2"/></svg></div>
                 <div class="kpi-label">Giá trung bình</div>
                 <div class="kpi-value" id="kpi-average">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon">📈</div>
+                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17m-14-4 4-4 3 2 5-7"/></svg></div>
                 <div class="kpi-label">Giá trung vị</div>
                 <div class="kpi-value" id="kpi-median">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon">⬇</div>
+                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></div>
                 <div class="kpi-label">Giá thấp nhất</div>
                 <div class="kpi-value" id="kpi-min">--</div>
             </div>
             <div class="kpi">
-                <div class="kpi-icon">⬆</div>
+                <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 20V5m-6 6 6-6 6 6"/></svg></div>
                 <div class="kpi-label">Giá cao nhất</div>
                 <div class="kpi-value" id="kpi-max">--</div>
             </div>
@@ -959,25 +960,25 @@ body{background:var(--bg);color:var(--text)}
 
         <div class="chart-grid">
             <section class="card chart-card">
-                <div class="card-title">📊 Phân bố giá xe</div>
+                <div class="card-title">Phân bố mức giá rao bán</div><p class="chart-description">Số lượng tin đăng được chia theo từng khoảng giá.</p>
                 <div class="chart-wrap"><canvas id="price-chart"></canvas></div>
             </section>
             <section class="card chart-card">
-                <div class="card-title">🚗 Số lượng tin đăng theo hãng</div>
+                <div class="card-title">Số lượng tin đăng theo hãng</div><p class="chart-description">Các hãng có nhiều tin đăng nhất trong phạm vi đang chọn.</p>
                 <div class="chart-wrap"><canvas id="make-chart"></canvas></div>
             </section>
             <section class="card chart-card">
-                <div class="card-title">💰 Giá trung vị theo hãng xe</div>
+                <div class="card-title">Giá trung vị theo hãng xe</div><p class="chart-description">So sánh mức giá ở giữa của các tin đăng thuộc từng hãng.</p>
                 <div class="chart-wrap"><canvas id="make-price-chart"></canvas></div>
             </section>
             <section class="card chart-card">
-                <div class="card-title">📅 Giá trung vị theo tuổi xe</div>
+                <div class="card-title">Giá trung vị theo tuổi xe</div><p class="chart-description">Quan sát sự thay đổi mức giá theo số năm sử dụng.</p>
                 <div class="chart-wrap"><canvas id="age-price-chart"></canvas></div>
             </section>
         </div>
 
         <section class="card" style="margin-bottom:20px">
-            <div class="card-title">📋 Bảng thống kê theo hãng xe</div>
+            <div class="card-title">Bảng thống kê theo hãng xe</div>
             <div class="table-wrap">
                 <table>
                     <thead><tr>
@@ -990,7 +991,7 @@ body{background:var(--bg);color:var(--text)}
         </section>
 
         <section class="card">
-            <div class="card-title">📋 Bảng thống kê theo tuổi xe</div>
+            <div class="card-title">Bảng thống kê theo tuổi xe</div>
             <div class="table-wrap">
                 <table>
                     <thead><tr>
@@ -1004,9 +1005,9 @@ body{background:var(--bg);color:var(--text)}
     </div>
 
     <div id="stats-empty" class="card result-empty" style="margin-top:22px">
-        <div class="empty-icon">📊</div>
-        <strong>Chưa có dữ liệu thống kê</strong>
-        <p>Chọn phạm vi và nhấn “Xem thống kê” để tải dữ liệu.</p>
+        <div class="stats-loading-mark"><span></span><span></span><span></span></div>
+        <strong>Đang tải dữ liệu thống kê</strong>
+        <p>Hệ thống đang tổng hợp số liệu từ tập dữ liệu đã thu thập.</p>
     </div>
 </section>
 
@@ -1070,24 +1071,13 @@ function showPage() {
     });
 }
 
-function formatMoney(value) {
-    const n = Number(value);
-    if(!Number.isFinite(n)) return "--";
-    return n.toLocaleString("vi-VN") + " VNĐ";
-}
+function formatMoney(value){if(value===null||value===undefined||value==="")return "--";const n=Number(value);return Number.isFinite(n)&&n>=0?n.toLocaleString("vi-VN")+" VNĐ":"--"}
+function parseMoneyInput(value){const d=String(value??"").replace(/[^0-9]/g,"");return d?Number(d):NaN}
+function formatMoneyInput(value){const n=parseMoneyInput(value);return Number.isFinite(n)&&n>0?n.toLocaleString("vi-VN"):""}
 
-function formatCompact(value) {
-    const n = Number(value);
-    if(!Number.isFinite(n)) return "--";
-    if(Math.abs(n)>=1e9) return (n/1e9).toFixed(2)+" tỷ";
-    if(Math.abs(n)>=1e6) return (n/1e6).toFixed(0)+" triệu";
-    return n.toLocaleString("vi-VN");
-}
+function formatCompact(value){if(value===null||value===undefined||value==="")return "--";const n=Number(value);if(!Number.isFinite(n)||n<0)return "--";if(n>=1e9)return(n/1e9).toFixed(2)+" tỷ";if(n>=1e6)return(n/1e6).toFixed(0)+" triệu";return n.toLocaleString("vi-VN")}
 
-function formatNumber(value) {
-    const n = Number(value);
-    return Number.isFinite(n) ? n.toLocaleString("vi-VN") : "--";
-}
+function formatNumber(value){if(value===null||value===undefined||value==="")return "--";const n=Number(value);return Number.isFinite(n)&&n>=0?n.toLocaleString("vi-VN"):"--"}
 
 async function api(url,options={}) {
     const response = await fetch(url,{
@@ -1195,7 +1185,8 @@ async function loadOptions() {
     renderFields("p_", $("prediction-extra"),
         FEATURES.filter(k => !BASIC.includes(k)));
 
-    renderFields("c_", $("check-fields"), FEATURES);
+    renderFields("c_", $("check-fields"), BASIC);
+    renderFields("c_", $("check-extra"), FEATURES.filter(k=>!BASIC.includes(k)));
 
     ["p_","c_"].forEach(prefix => {
         const brand = $(prefix+"hang_xe");
@@ -1250,16 +1241,13 @@ $("prediction-form").addEventListener("submit",async e=>{
     }
 });
 
+$("asking-price").addEventListener("input",e=>{e.target.value=formatMoneyInput(e.target.value)});
 $("check-form").addEventListener("submit",async e=>{
     e.preventDefault();
     if(!validate("c_")) return;
 
-    const asking=Number($("asking-price").value);
-    if(!asking || asking<=0) {
-        alert("Vui lòng nhập giá rao bán hợp lệ.");
-        $("asking-price").focus();
-        return;
-    }
+    const asking=parseMoneyInput($("asking-price").value);
+    if(!Number.isFinite(asking)||asking<=0){$("check-status").textContent="Vui lòng nhập giá rao bán lớn hơn 0.";$("check-status").className="status error";$("asking-price").focus();return}
 
     const button=$("check-button");
     button.disabled=true;
@@ -1279,11 +1267,10 @@ $("check-form").addEventListener("submit",async e=>{
 
         $("check-asking").textContent=formatMoney(data.gia_rao ?? asking);
         $("check-predicted").textContent=formatMoney(data.gia_du_doan);
-        $("check-difference").textContent=(Number(data.chenh_lech) > 0 ? "+" : "") + formatMoney(data.chenh_lech);
-        const percent = Number(data.ty_le_chenh_lech);
-        $("check-percent").textContent = Number.isFinite(percent)
-            ? (percent > 0 ? "+" : "") + percent.toFixed(1).replace(".", ",") + "%"
-            : "Chưa xác định";
+        const difference=Number(data.chenh_lech);
+        $("check-difference").textContent=!Number.isFinite(difference)?"Chưa xác định":difference>0?"Cao hơn "+formatMoney(Math.abs(difference)):difference<0?"Thấp hơn "+formatMoney(Math.abs(difference)):"Bằng giá dự đoán";
+        const percent=Number(data.ty_le_chenh_lech);
+        $("check-percent").textContent=!Number.isFinite(percent)?"Chưa xác định":percent>0?"Cao hơn "+Math.abs(percent).toFixed(1).replace(".",",")+"%":percent<0?"Thấp hơn "+Math.abs(percent).toFixed(1).replace(".",",")+"%":"Bằng giá dự đoán";
 
         const range=data.khoang_tham_khao;
         let low=null,high=null;
@@ -1594,7 +1581,7 @@ async function loadStatistics() {
     } catch(error) {
         $("stats-status").textContent="Không tải được thống kê: "+error.message;
         $("stats-status").className="status error";
-        $("stats-empty").innerHTML='<div class="empty-icon">⚠️</div><strong>Chưa thể tải dữ liệu</strong><p>'+error.message+'</p>';
+        $("stats-empty").innerHTML='<div class="stats-error-mark">!</div><strong>Chưa thể tải dữ liệu</strong><p></p>'; $("stats-empty").querySelector("p").textContent=error.message;
     } finally {
         $("stats-button").disabled=false;
         $("stats-button").textContent="Xem thống kê →";
