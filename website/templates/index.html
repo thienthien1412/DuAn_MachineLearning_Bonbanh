@@ -347,8 +347,14 @@ h1 {
     margin-bottom:15px;
 }
 
-.assessment.warning {background:#fff5e6;color:#b77913}
+.assessment.good {background:#e8f7f1;color:#087e5c}
+.assessment.warning {background:#fff5e6;color:#9b650d}
 .assessment.danger {background:#fff0f0;color:#c73e49}
+.metric-wide {grid-column:1 / -1}
+.result-alert {margin-top:14px;padding:12px 14px;border-radius:10px;background:#fff7e8;color:#93620e;font-size:12px;line-height:1.65}
+.result-alert:empty {display:none}
+.stats-summary {margin:-8px 0 18px;color:var(--muted);font-size:12px}
+.stats-error {padding:14px 16px;border:1px solid #f2caca;border-radius:10px;background:#fff5f5;color:#b4232f;font-size:12px;line-height:1.6}
 
 .range-track {
     height:12px;
@@ -542,8 +548,9 @@ tbody tr:hover {background:#f7faff}
                     <strong id="predicted-range">--</strong>
                 </div>
                 <p class="result-note" style="margin-top:20px">
-                    Kết quả được ước tính từ mô hình học máy và dữ liệu thị trường. Giá thực tế có thể thay đổi tùy tình trạng xe và giao dịch.
+                    Kết quả được ước tính từ mô hình học máy và dữ liệu rao bán đã thu thập. Đây không phải giá giao dịch bảo đảm.
                 </p>
+                <div id="prediction-warning" class="result-alert"></div>
             </div>
         </section>
     </div>
@@ -617,6 +624,10 @@ tbody tr:hover {background:#f7faff}
                     <div class="metric">
                         <span>Khoảng tham khảo</span>
                         <strong id="check-range">--</strong>
+                    </div>
+                    <div class="metric metric-wide">
+                        <span>Tỷ lệ chênh lệch so với giá dự đoán</span>
+                        <strong id="check-percent">--</strong>
                     </div>
                 </div>
                 <div style="font-size:12px;font-weight:700">Vị trí giá rao bán trong khoảng tham khảo</div>
@@ -822,7 +833,7 @@ async function api(url,options={}) {
         ...options
     });
     const data = await response.json();
-    if(!response.ok) throw new Error(data.error || data.message || "Có lỗi xảy ra.");
+    if(!response.ok) throw new Error(data.loi || data.error || data.message || "Có lỗi xảy ra.");
     return data;
 }
 
@@ -961,9 +972,13 @@ $("prediction-form").addEventListener("submit",async e=>{
             $("predicted-range").textContent="Chưa có thông tin";
         }
 
+        $("prediction-warning").textContent = Array.isArray(data.canh_bao) && data.canh_bao.length
+            ? "Lưu ý: " + data.canh_bao.join("; ")
+            : "";
         $("prediction-empty").classList.add("hidden");
         $("prediction-result").classList.remove("hidden");
         $("prediction-status").textContent="Dự đoán giá xe thành công.";
+        $("prediction-status").className="status";
     } catch(error) {
         $("prediction-status").textContent=error.message;
         $("prediction-status").className="status error";
@@ -1002,7 +1017,11 @@ $("check-form").addEventListener("submit",async e=>{
 
         $("check-asking").textContent=formatMoney(data.gia_rao ?? asking);
         $("check-predicted").textContent=formatMoney(data.gia_du_doan);
-        $("check-difference").textContent=formatMoney(data.chenh_lech);
+        $("check-difference").textContent=(Number(data.chenh_lech) > 0 ? "+" : "") + formatMoney(data.chenh_lech);
+        const percent = Number(data.ty_le_chenh_lech);
+        $("check-percent").textContent = Number.isFinite(percent)
+            ? (percent > 0 ? "+" : "") + percent.toFixed(1).replace(".", ",") + "%"
+            : "Chưa xác định";
 
         const range=data.khoang_tham_khao;
         let low=null,high=null;
@@ -1019,11 +1038,11 @@ $("check-form").addEventListener("submit",async e=>{
 
         const assessment=$("assessment");
         assessment.textContent=data.danh_gia || "Đã hoàn tất đối chiếu";
-        assessment.className="assessment";
+        assessment.className="assessment good";
 
         const text=(data.danh_gia || "").toLowerCase();
-        if(text.includes("cao") || text.includes("đắt")) assessment.classList.add("warning");
-        if(text.includes("thấp") || text.includes("rẻ")) assessment.classList.add("danger");
+        if(text.includes("cao") || text.includes("đắt")) assessment.className="assessment warning";
+        else if(text.includes("thấp") || text.includes("rẻ")) assessment.className="assessment good";
 
         $("check-warning").textContent=data.canh_bao || "Kết quả mang tính tham khảo.";
 
@@ -1225,11 +1244,13 @@ function renderStats(data) {
         "Số lượng xe"
     );
 
-    const makes=getRows(data,"top_hang_xe","bang_theo_hang","theo_hang");
+    const makes=getRows(data,"top_hang_xe");
     const sortedMakes=[...makes].sort((a,b)=>rowCount(b)-rowCount(a)).slice(0,10);
     drawBar("make-chart",sortedMakes.map(rowName),sortedMakes.map(rowCount),"Số lượng",true);
 
-    const makePrice=[...makes].filter(x=>rowMedian(x)>0)
+    // Dùng bảng thống kê đầy đủ vì top_hang_xe chỉ có số lượng, không có giá trung vị.
+    const makeDetails=getRows(data,"bang_theo_hang","theo_hang");
+    const makePrice=[...makeDetails].filter(x=>rowMedian(x)>0)
         .sort((a,b)=>rowMedian(b)-rowMedian(a)).slice(0,10);
 
     drawBar("make-price-chart",makePrice.map(rowName),
@@ -1244,7 +1265,7 @@ function renderStats(data) {
     drawLine("age-price-chart",sortedAges.map(rowName),
         sortedAges.map(row=>rowMedian(row)/1e9),"Giá trung vị (tỷ)");
 
-    fillTable("make-table",getRows(data,"bang_theo_hang","theo_hang"),"Hãng xe");
+    fillTable("make-table",makeDetails,"Hãng xe");
     fillTable("age-table",getRows(data,"bang_theo_tuoi","theo_tuoi"),"Tuổi xe");
 }
 
@@ -1279,6 +1300,7 @@ async function loadStatistics() {
     } catch(error) {
         $("stats-status").textContent="Không tải được thống kê: "+error.message;
         $("stats-status").className="status error";
+        $("stats-empty").innerHTML='<div class="empty-icon">⚠️</div><strong>Chưa thể tải dữ liệu</strong><p>'+error.message+'</p>';
     } finally {
         $("stats-button").disabled=false;
         $("stats-button").textContent="Xem thống kê →";
