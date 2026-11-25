@@ -730,6 +730,39 @@ th{background:#eaf5f6;color:#365b66}td{color:#35515d}tbody tr:hover{background:#
 @media(max-width:700px){.navbar{height:auto;min-height:70px;padding:11px 4%;gap:8px}.brand{font-size:20px}.brand-icon{width:43px;height:38px}.brand-car{width:35px}.nav-links{width:100%;overflow-x:auto}.nav-links a{font-size:10px;padding:9px 10px;white-space:nowrap}.container{padding:22px 4% 42px}.hero{padding:32px 24px;min-height:280px}.page-heading{padding:28px 23px;min-height:190px}.page-heading h1{font-size:28px}.card{padding:19px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.waiting-state{min-height:320px;padding:22px 10px}}
 @media(max-width:420px){.nav-links a{font-size:9px;padding:8px 7px}.form-grid{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-value{font-size:18px}}
 
+
+/* ===== FIX CANH HANG XE / DONG XE VA CHAN GIA TRI AM ===== */
+.field-control-stack{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:8px;
+    width:100%;
+}
+.field-control-stack .field-search,
+.field-control-stack select{
+    display:block;
+    width:100%;
+    min-width:0;
+    height:44px;
+    margin:0;
+    padding:0 13px;
+    border:1px solid #d8e2e9;
+    border-radius:8px;
+    background:#fff;
+    color:var(--text);
+    font:inherit;
+    line-height:normal;
+}
+.field-control-stack .field-search::placeholder{color:#91a0ad}
+.field-control-stack .field-search:focus,
+.field-control-stack select:focus{
+    outline:none;
+    border-color:#087e8b;
+    box-shadow:0 0 0 3px rgba(8,126,139,.10);
+}
+.field-control-stack select{cursor:pointer}
+.field input[type="number"]{min-width:0}
+
 </style>
 </head>
 
@@ -1129,7 +1162,20 @@ function makeField(key,prefix,required) {
     input.dataset.key = key;
     if(required) input.required = true;
     if(!required && input.tagName === "SELECT") input.value = "";
+    if(input.type==="number"){
+        input.min="0";
+        input.inputMode=key==="dung_tich_dong_co"?"decimal":"numeric";
+        input.addEventListener("input",()=>{
+            if(input.value!=="" && Number(input.value)<0) input.value="0";
+        });
+        input.addEventListener("change",()=>{
+            if(input.value!=="" && Number(input.value)<0) input.value="0";
+        });
+    }
+
     if(input.tagName==="SELECT"&&(key==="hang_xe"||key==="dong_xe")){
+        const control=document.createElement("div");
+        control.className="field-control-stack";
         const search=document.createElement("input");
         search.type="search";
         search.className="field-search";
@@ -1145,9 +1191,12 @@ function makeField(key,prefix,required) {
             search.value="";
             Array.from(input.options).forEach(option=>option.hidden=false);
         });
-        wrap.appendChild(search);
+        control.appendChild(search);
+        control.appendChild(input);
+        wrap.appendChild(control);
+    } else {
+        wrap.appendChild(input);
     }
-    wrap.appendChild(input);
     const hints={
         khu_vuc:"Chọn khu vực nơi xe đang được rao bán.",
         so_km_da_di:"Nhập số kilomet hiển thị trên đồng hồ xe.",
