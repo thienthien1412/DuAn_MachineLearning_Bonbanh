@@ -626,6 +626,37 @@ body{background:var(--bg);color:var(--text)}
  .card{padding:20px}
 }
 
+
+/* ===== EMPTY RESULT STATES ===== */
+.result-panel{min-height:440px;display:flex;flex-direction:column}
+.waiting-state{flex:1;min-height:350px;justify-content:center;gap:0;padding:25px 22px 20px}
+.waiting-visual{width:180px;height:118px;position:relative;margin:0 auto 18px}
+.car-visual{border-radius:50%;background:radial-gradient(circle,rgba(226,163,75,.17),rgba(226,163,75,0) 68%)}
+.visual-orbit{position:absolute;width:128px;height:80px;border:1px solid rgba(23,79,120,.18);border-radius:50%;left:26px;top:18px;transform:rotate(-13deg)}
+.car-body{position:absolute;width:116px;height:31px;left:32px;top:57px;background:linear-gradient(120deg,#173e5d,#286d96);border-radius:13px 22px 8px 8px;box-shadow:0 9px 17px rgba(16,44,68,.2)}
+.car-window{position:absolute;z-index:1;width:67px;height:30px;left:55px;top:34px;background:#dce8ef;clip-path:polygon(20% 0,78% 0,100% 100%,0 100%);border-radius:8px 8px 0 0}
+.car-wheel{position:absolute;z-index:2;width:23px;height:23px;border-radius:50%;background:#142b40;border:5px solid #dce5eb;top:76px}
+.wheel-left{left:48px}.wheel-right{right:48px}
+.waiting-kicker{font-size:9px;letter-spacing:1.8px;font-weight:800;color:#a66b22;margin-bottom:9px}
+.waiting-state>strong{font-size:17px;line-height:1.45;color:#142d45;text-align:center;margin-bottom:8px}
+.waiting-state>p{max-width:330px;font-size:11px;line-height:1.8;color:#748394;text-align:center}
+.waiting-steps{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:24px}
+.waiting-steps>div{background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:11px 6px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.waiting-steps b{font-size:10px;color:#b77a2c}
+.waiting-steps span{font-size:9px;color:#627486;text-align:center}
+.scale-visual{height:125px;margin-bottom:16px}
+.scale-line{position:absolute;left:20px;right:20px;top:54px;height:9px;border-radius:20px;background:linear-gradient(90deg,#d8e5eb 0%,#9bb9c8 50%,#e5c995 100%)}
+.scale-line:before,.scale-line:after{content:"";position:absolute;width:3px;height:22px;top:-6px;background:#879aaa;border-radius:4px}
+.scale-line:before{left:0}.scale-line:after{right:0}
+.scale-pin{position:absolute;left:61%;top:39px;width:3px;height:31px;background:#d59a43;border-radius:4px}
+.scale-pin:before{content:"";position:absolute;width:13px;height:13px;left:-5px;top:-5px;border-radius:50%;background:#d59a43;border:3px solid #fff;box-shadow:0 1px 5px #b9c7d1}
+.scale-dot{position:absolute;left:calc(61% - 2px);top:75px;width:7px;height:7px;border-radius:50%;background:#d59a43;opacity:.35}
+.scale-label{position:absolute;top:78px;font-size:9px;letter-spacing:.7px;color:#8090a0;font-weight:800}
+.scale-low{left:16px}.scale-high{right:16px}
+.waiting-hint{margin-top:23px;padding:11px 13px;border-radius:8px;background:#fff;border:1px solid #e6ebef;color:#788796;font-size:10px;line-height:1.5;text-align:center}
+.hint-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#d8a04d;margin-right:6px}
+@media(max-width:700px){.result-panel{min-height:400px}.waiting-state{min-height:320px}.waiting-steps span{font-size:8px}}
+
 </style>
 </head>
 
@@ -676,10 +707,22 @@ body{background:var(--bg);color:var(--text)}
 
         <section class="result-panel">
             <div class="card-title"><span class="symbol">▥</span> Kết quả dự đoán</div>
-            <div id="prediction-empty" class="result-empty">
-                <div class="empty-icon">🚘</div>
-                <strong>Chưa có kết quả định giá</strong>
-                <p>Nhập thông tin xe để hệ thống ước tính giá bán.</p>
+            <div id="prediction-empty" class="result-empty waiting-state waiting-prediction">
+                <div class="waiting-visual car-visual">
+                    <div class="visual-orbit"></div>
+                    <div class="car-window"></div>
+                    <div class="car-body"></div>
+                    <div class="car-wheel wheel-left"></div>
+                    <div class="car-wheel wheel-right"></div>
+                </div>
+                <span class="waiting-kicker">ĐỊNH GIÁ THÔNG MINH</span>
+                <strong>Sẵn sàng định giá xe của bạn</strong>
+                <p>Điền thông tin phương tiện để nhận mức giá ước tính từ dữ liệu thị trường.</p>
+                <div class="waiting-steps">
+                    <div><b>01</b><span>Nhập thông tin xe</span></div>
+                    <div><b>02</b><span>Phân tích dữ liệu</span></div>
+                    <div><b>03</b><span>Nhận kết quả</span></div>
+                </div>
             </div>
             <div id="prediction-result" class="hidden">
                 <div class="result-price">
@@ -744,10 +787,18 @@ body{background:var(--bg);color:var(--text)}
 
         <section class="result-panel">
             <div class="card-title"><span class="symbol">⚖️</span> Kết quả đối chiếu</div>
-            <div id="check-empty" class="result-empty">
-                <div class="empty-icon">📋</div>
-                <strong>Chưa có kết quả kiểm tra</strong>
-                <p>Nhập thông tin xe và giá rao bán để bắt đầu đối chiếu.</p>
+            <div id="check-empty" class="result-empty waiting-state waiting-check">
+                <div class="waiting-visual scale-visual">
+                    <div class="scale-line"></div>
+                    <div class="scale-pin"></div>
+                    <div class="scale-dot"></div>
+                    <div class="scale-label scale-low">GIÁ THẤP</div>
+                    <div class="scale-label scale-high">GIÁ CAO</div>
+                </div>
+                <span class="waiting-kicker">ĐỐI CHIẾU THỊ TRƯỜNG</span>
+                <strong>Chờ thông tin để kiểm tra giá</strong>
+                <p>Hệ thống sẽ so sánh giá rao bán với mức giá dự đoán và khoảng tham khảo.</p>
+                <div class="waiting-hint"><span class="hint-dot"></span> Kết quả sẽ hiển thị tại đây sau khi kiểm tra</div>
             </div>
             <div id="check-result" class="hidden">
                 <div id="assessment" class="assessment">Kết quả đánh giá</div>
