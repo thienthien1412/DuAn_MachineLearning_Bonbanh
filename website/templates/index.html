@@ -1836,7 +1836,9 @@ function renderStats(data){
  const ages=getRows(data,"bang_theo_tuoi").sort((a,b)=>Number(rowName(a))-Number(rowName(b)));drawLine("age-price-chart",ages.map(rowName),ages.map(x=>rowMedian(x)/1e9),"Giá trung vị (tỷ)",CHART_COLORS.age);
  fillTable("make-table",makes);fillTable("age-table",ages);renderInsights(data.insights||[]);
  $("dashboard-filter-summary").textContent=data.mo_ta_pham_vi||"Đang hiển thị dữ liệu theo điều kiện đã chọn.";
- $("make-chart").closest(".chart-card").querySelector(".card-title").textContent="Số lượng tin đăng theo "+(data.ten_nhom||"hãng xe");
+ const groupCard=$("make-chart").closest(".chart-card");
+ groupCard.querySelector(".card-title").textContent="Số lượng tin đăng theo "+(data.ten_nhom||"hãng xe");
+ groupCard.querySelector(".chart-description").textContent=data.ten_nhom==="kiểu dáng"?"Cơ cấu kiểu dáng trong hãng xe và các điều kiện đang chọn.":"Các hãng có nhiều tin đăng nhất trong phạm vi đang chọn.";
 }
 async function loadStatistics(){
  const params=new URLSearchParams();DASHBOARD_FILTERS.forEach(k=>(ACTIVE_FILTERS[k]||[]).forEach(v=>params.append(k,v)));
