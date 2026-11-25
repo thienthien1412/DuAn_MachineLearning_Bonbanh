@@ -298,7 +298,14 @@ def thong_ke_thi_truong():
                 du_lieu_loc[cot].astype(str).isin(cac_gia_tri)
             ]
 
-        dieu_kien.append(cot)
+        dieu_kien.append({
+            "hang_xe": "hãng xe",
+            "tuoi_xe": "tuổi xe",
+            "khu_vuc": "khu vực",
+            "kieu_dang": "kiểu dáng",
+            "hop_so": "hộp số",
+            "xuat_xu": "xuất xứ"
+        }[cot])
 
     tong_quan = tinh_chi_so(du_lieu_loc)
 
